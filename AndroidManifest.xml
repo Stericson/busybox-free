@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="stericson.busybox"
+          android:versionName="10.9" android:versionCode="157">
+
+    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="11"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+
+
+    <application android:icon="@drawable/icon" android:label="BusyBox Free" android:theme="@style/CustomButton">
+
+        <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"
+                  android:name=".Activity.MainActivity"
+                  android:label="BusyBox Free">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <receiver android:name=".receivers.OnUpgradeReceiver">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_REPLACED"/>
+                <data android:scheme="package" android:path="stericson.busybox"/>
+            </intent-filter>
+        </receiver>
+
+    </application>
+
+    <supports-screens
+            android:largeScreens="true"
+            android:normalScreens="true"
+            android:smallScreens="true"
+            android:anyDensity="true"/>
+</manifest> 

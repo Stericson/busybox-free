@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res/stericson.busybox"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:background="#AA000000"
+        android:id="@+id/main">
+
+    <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/roundedborder_black_translucent"
+            android:layout_centerInParent="true"
+            android:padding="10dip">
+
+        <ProgressBar
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_centerVertical="true"
+                android:id="@+id/progress"
+                android:layout_marginRight="10dp"/>
+
+        <stericson.busybox.custom.FontableTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@id/progress"
+                android:textColor="#ffffff"
+                android:id="@+id/header"/>
+
+    </RelativeLayout>
+</RelativeLayout>

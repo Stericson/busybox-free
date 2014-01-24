@@ -1,7 +1,7 @@
 <component name="libraryTable">
   <library name="RootTools">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/../../../RootTools/Developmental/out/artifacts/RootTools/RootTools.jar!/" />
+      <root url="jar://$PROJECT_DIR$/RootTools.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

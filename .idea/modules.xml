@@ -3,7 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Free.iml" filepath="$PROJECT_DIR$/Free.iml" />
-      <module fileurl="file://$USER_HOME$/Google Drive/Personal App Stuff/JakeWharton-Android-ViewPagerIndicator-7f57253/library/library.iml" filepath="$USER_HOME$/Google Drive/Personal App Stuff/JakeWharton-Android-ViewPagerIndicator-7f57253/library/library.iml" />
+      <module fileurl="file://$PROJECT_DIR$/view_pager_JW/view_pager_JW.iml" filepath="$PROJECT_DIR$/view_pager_JW/view_pager_JW.iml" />
     </modules>
   </component>
 </project>

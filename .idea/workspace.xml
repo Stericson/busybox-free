@@ -69,91 +69,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="AndroidManifest.xml" pinned="false" current="true" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <file leaf-file-name="TabPageIndicator.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/view_pager_JW/src/com/viewpagerindicator/TabPageIndicator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="35" selection-start="181" selection-end="181" vertical-scroll-proportion="0.05775401" vertical-offset="0" max-vertical-offset="935">
-              <folding />
+            <state line="30" column="0" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4014">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Constants.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/Constants.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="16" column="46" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="8424">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="App.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/App.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="262" selection-end="262" vertical-scroll-proportion="0.0" vertical-offset="198" max-vertical-offset="2898">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Common.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/Support/Common.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="191" column="26" selection-start="5612" selection-end="5612" vertical-scroll-proportion="0.0" vertical-offset="3438" max-vertical-offset="4608">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MainActivity.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="MainActivity.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/stericson/busybox/Activity/MainActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="219" column="146" selection-start="7880" selection-end="7880" vertical-scroll-proportion="0.0" vertical-offset="3942" max-vertical-offset="6480">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="strings.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="189" column="0" selection-start="12027" selection-end="12027" vertical-scroll-proportion="0.0" vertical-offset="3224" max-vertical-offset="4518">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FindAppletInformationTask.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/tasks/FindAppletInformationTask.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="13" column="46" selection-start="426" selection-end="426" vertical-scroll-proportion="0.0" vertical-offset="234" max-vertical-offset="2484">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="PageAdapter.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/adapter/PageAdapter.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="124" column="13" selection-start="4987" selection-end="4987" vertical-scroll-proportion="0.0" vertical-offset="2232" max-vertical-offset="2934">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FindBBLocationsJob.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/FindBBLocationsJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="35" column="5" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="774">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="InitialChecksJob.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/InitialChecksJob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="9" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="720">
+            <state line="24" column="0" selection-start="906" selection-end="906" vertical-scroll-proportion="0.41283423" vertical-offset="46" max-vertical-offset="6174">
               <folding />
             </state>
           </provider>
@@ -170,6 +100,33 @@
     <option name="KEY_STORE_PATH" value="$USER_HOME$/Google Drive/Personal App Stuff/key" />
     <option name="KEY_ALIAS" value="stephen" />
     <option name="REMEMBER_PASSWORDS" value="true" />
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="availableProjects">
+      <map>
+        <entry>
+          <key>
+            <ExternalProjectPojo>
+              <option name="name" value="busybox-free" />
+              <option name="path" value="$PROJECT_DIR$" />
+            </ExternalProjectPojo>
+          </key>
+          <value>
+            <list>
+              <ExternalProjectPojo>
+                <option name="name" value=":" />
+                <option name="path" value="$PROJECT_DIR$" />
+              </ExternalProjectPojo>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="modificationStamps">
+      <map>
+        <entry key="$PROJECT_DIR$" value="1390523195000" />
+      </map>
+    </option>
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -216,6 +173,8 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -230,7 +189,7 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
+              <option name="myItemId" value="busybox-free" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -240,106 +199,16 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
+              <option name="myItemId" value="busybox-free" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="busybox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="busybox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jobs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="busybox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="jobs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="tasks" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="busybox" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Activity" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Free" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="assets" />
+              <option name="myItemId" value="res" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -350,7 +219,7 @@
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="recentsLimit" value="5" />
-    <property name="last_opened_file_path" value="$USER_HOME$/sdk/extras/android/support/v4/android-support-v4.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/view_pager_JW/libs/android-support-v4.jar!/" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
@@ -367,6 +236,15 @@
     </key>
   </component>
   <component name="RunManager" selected="Android Application.Free">
+    <configuration default="true" type="GroovyScriptRunConfiguration" factoryName="Groovy">
+      <module name="" />
+      <setting name="path" value="" />
+      <setting name="vmparams" value="" />
+      <setting name="params" value="" />
+      <setting name="workDir" value="file://$PROJECT_DIR$" />
+      <setting name="debug" value="false" />
+      <method />
+    </configuration>
     <configuration default="true" type="AndroidTestRunConfigurationType" factoryName="Android Tests">
       <module name="" />
       <option name="TESTING_TYPE" value="0" />
@@ -395,19 +273,6 @@
       <option name="PORT" value="5005" />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
       <module name="" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
@@ -433,6 +298,19 @@
       <envs />
       <properties />
       <listeners />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="Application" factoryName="Application">
@@ -596,13 +474,6 @@
     <breakpoint-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/InstallJob.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="255" selection-end="255" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="864">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/InitialChecksJob.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="9" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="162" max-vertical-offset="720">
@@ -876,16 +747,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/stericson/busybox/Activity/MainActivity.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="219" column="146" selection-start="7880" selection-end="7880" vertical-scroll-proportion="0.0" vertical-offset="3150" max-vertical-offset="5706">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/res/values/strings.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="189" column="0" selection-start="12027" selection-end="12027" vertical-scroll-proportion="0.0" vertical-offset="3224" max-vertical-offset="4518">
+        <state line="189" column="0" selection-start="12027" selection-end="12027" vertical-scroll-proportion="0.19305857" vertical-offset="3224" max-vertical-offset="4518">
           <folding />
         </state>
       </provider>
@@ -899,14 +763,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stericson/busybox/adapter/PageAdapter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="124" column="13" selection-start="4987" selection-end="4987" vertical-scroll-proportion="0.0" vertical-offset="1530" max-vertical-offset="2556">
+        <state line="124" column="13" selection-start="4987" selection-end="4987" vertical-scroll-proportion="0.23861171" vertical-offset="2012" max-vertical-offset="2934">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/FindBBLocationsJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="35" column="5" selection-start="958" selection-end="958" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="684">
+        <state line="35" column="5" selection-start="958" selection-end="958" vertical-scroll-proportion="0.6737968" vertical-offset="0" max-vertical-offset="935">
           <folding />
         </state>
       </provider>
@@ -920,7 +784,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stericson/busybox/jobs/InitialChecksJob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="9" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="630">
+        <state line="9" column="13" selection-start="261" selection-end="261" vertical-scroll-proportion="0.17326203" vertical-offset="0" max-vertical-offset="935">
           <folding />
         </state>
       </provider>
@@ -941,7 +805,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/stericson/busybox/Constants.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="16" column="46" selection-start="339" selection-end="339" vertical-scroll-proportion="0.0" vertical-offset="18" max-vertical-offset="8424">
+        <state line="16" column="46" selection-start="339" selection-end="339" vertical-scroll-proportion="0.29284164" vertical-offset="18" max-vertical-offset="8424">
           <folding />
         </state>
       </provider>
@@ -949,6 +813,22 @@
     <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
       <provider selected="true" editor-type-id="text-editor">
         <state line="3" column="35" selection-start="181" selection-end="181" vertical-scroll-proportion="0.05775401" vertical-offset="0" max-vertical-offset="935">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/view_pager_JW/src/com/viewpagerindicator/TabPageIndicator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="30" column="0" selection-start="1139" selection-end="1139" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="4014">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/stericson/busybox/Activity/MainActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="906" selection-end="906" vertical-scroll-proportion="0.41283423" vertical-offset="46" max-vertical-offset="6174">
           <folding />
         </state>
       </provider>
@@ -970,7 +850,7 @@
       </state>
       <state key="FacetStructureConfigurable.UI">
         <settings>
-          <last-edited>Android</last-edited>
+          <last-edited>Android (Free)|Android</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1005,7 +885,7 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
-          <last-edited>library</last-edited>
+          <last-edited>view_pager_JW</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -1029,7 +909,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
-          <last-edited>RootTools</last-edited>
+          <last-edited>android-support-v4</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
