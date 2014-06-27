@@ -9,9 +9,6 @@ import stericson.busybox.R;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.JobResult;
 
-/**
- * Created by Stephen Erickson on 7/9/13.
- */
 public class FindBBVersionTask {
 
     public static JobResult execute(AsyncJob j) {

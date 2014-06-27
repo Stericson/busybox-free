@@ -20,7 +20,6 @@ import android.widget.ScrollView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import com.stericson.RootTools.RootTools;
 import com.viewpagerindicator.TitleProvider;
 
 public class PageAdapter extends PagerAdapter implements TitleProvider {

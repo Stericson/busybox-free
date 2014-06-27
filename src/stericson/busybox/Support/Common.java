@@ -19,6 +19,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import stericson.busybox.App;
 import stericson.busybox.interfaces.CommandCallback;
 
 public class Common {
@@ -28,32 +29,44 @@ public class Common {
     static ShellCommand command;
     static List<String> paths = new ArrayList<String>();
 
-    /**
-     * Used to extract certain assets we may need. Can be used by any class to
-     * extract something. Right now this is tailored only for the initial check
-     * sequence but can easily be edited to allow for more customization
-     */
-    public static void extractResources(Context activity, String file, String outputPath) {
-        String realFile = "";
-        if (file.contains("toolbox"))
+    public static boolean extractBusybox(Context context, String customBinaryLocation) {
+        String realFile = "busybox-" + App.getInstance().getArch() + ".png";
+
+        //sometimes this can cause a nullpointer
+        //reference https://code.google.com/p/android/issues/detail?id=8886
+        File storageLocation;
+
+        try
         {
-            realFile = "toolbox.png";
+            storageLocation = new File(context.getFilesDir().toString() + "/bb");
         }
-        else if (file.contains("reboot"))
+        catch (NullPointerException e)
         {
-            realFile = "reboot.png";
-        }
-        else if (file.contains("1.22.1")) {
-            realFile = "busybox1.22.1.png";
-        }
-        else if (file.contains("1.21.1")) {
-            realFile = "busybox1.21.1.png";
+            storageLocation = new File(context.getFilesDir().toString() + "/bb");
         }
 
+        if(!storageLocation.exists())
+        {
+            storageLocation.mkdirs();
+        }
+
+        new File(storageLocation.getPath() + "/busybox").delete();
+
         try {
-            InputStream in = activity.getResources().getAssets().open(realFile);
+
+            InputStream in;
+
+            if(customBinaryLocation.length() > 0)
+            {
+                in = new FileInputStream(new File(customBinaryLocation));
+            }
+            else
+            {
+                in = context.getResources().getAssets().open(realFile);
+            }
+
             OutputStream out = new FileOutputStream(
-                    outputPath);
+                    storageLocation.getPath() + "/busybox");
             byte[] buf = new byte[1024];
             int len;
 
@@ -66,9 +79,24 @@ public class Common {
             in.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+            return false;
         } catch (IOException e) {
             e.printStackTrace();
+            return false;
         }
+
+        if (RootTools.exists(storageLocation.getPath() + "/busybox")) {
+            try {
+                command = new ShellCommand(new CCB(), 0,
+                        "toolbox chmod 0755 " + storageLocation.getPath() + "/busybox",
+                        "chmod 0755 " + storageLocation.getPath() + "/busybox");
+                RootTools.getShell(true).add(command);
+                command.pause();
+
+            } catch (Exception e) {}
+        }
+
+        return true;
     }
 
     public static String getSingleBusyBoxPath() {
@@ -98,18 +126,6 @@ public class Common {
             String single_location = getSingleBusyBoxPath();
 
             if (single_location != null) {
-
-                /**
-                 * disabled this updates the location spinner
-                 */
-                /*
-                 if (single_location.contains("system/bin")) {
-                    App.getInstance().updatePath(1);
-                } else if (single_location.contains("system/xbin")) {
-                    App.getInstance().updatePath(0);
-                }
-                */
-
                 return new String[]{single_location};
             }
         }
@@ -141,19 +157,6 @@ public class Common {
             i++;
         }
 
-        /**
-         * disabled this updates the location spinner
-         */
-        /*
-        if (locations.length > 0) {
-            if (locations[0].contains("system/bin")) {
-                App.getInstance().updatePath(1);
-            } else if (locations[0].contains("system/xbin")) {
-                App.getInstance().updatePath(0);
-            }
-        }
-        */
-
         return locations;
     }
 
@@ -167,7 +170,6 @@ public class Common {
     }
 
     public static boolean setupBusybox(Context context, String binary, boolean isCustom) {
-        String toolbox = "/data/local/toolbox";
         String storagePath = context.getFilesDir().toString() + "/bb";
 
         new File(storagePath + "/busybox").delete();
@@ -221,8 +223,7 @@ public class Common {
         if (RootTools.exists(storagePath + "/busybox")) {
             try {
                 command = new ShellCommand(new CCB(), 0,
-                        toolbox + " chmod 0755 " + storagePath + "/busybox",
-                        "/system/bin/toolbox chmod 0755 " + storagePath + "/busybox",
+                        "toolbox chmod 0755 " + storagePath + "/busybox",
                         "chmod 0755 " + storagePath + "/busybox");
                 RootTools.getShell(true).add(command);
                 command.pause();

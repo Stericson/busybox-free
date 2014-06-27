@@ -27,52 +27,36 @@
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/indicator"
-            android:layout_marginBottom="50dip"
-            android:layout_weight="1"/>
+            android:layout_marginBottom="50dip"/>
 
-    <RelativeLayout
-            android:id="@+id/container"
-            android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/viewpager"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="-50dp">
-
-        <Button
-                android:id="@+id/uninstall"
-                android:layout_width="100dp"
-                android:layout_height="50dp"
-                android:onClick="uninstall"
-                android:text="@string/uninstall"
-                android:textColor="#ffffff"
-                android:layout_centerHorizontal="true"
-                android:enabled="false"/>
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/viewpager"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="-50dp">
 
         <Button
-                android:id="@+id/install"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:onClick="install"
-                android:text="@string/install"
-                android:textColor="#ffffff"
-                android:layout_toLeftOf="@id/uninstall"
-                android:layout_alignLeft="@id/uninstall"
-                android:layout_alignParentLeft="true"
-                android:enabled="false"/>
+            android:id="@+id/install"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="install"
+            android:text="@string/install"
+            android:textColor="#ffffff"
+            android:layout_weight=".5"/>
 
         <Button
-                android:id="@+id/restore"
-                android:layout_width="0dp"
-                android:layout_height="50dp"
-                android:layout_alignRight="@id/uninstall"
-                android:layout_toRightOf="@id/uninstall"
-                android:onClick="restore"
-                android:text="@string/restore"
-                android:textColor="#ffffff"
-                android:layout_alignParentRight="true"
-                android:enabled="false"/>
+            android:id="@+id/uninstall"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="uninstall"
+            android:text="@string/uninstall"
+            android:textColor="#ffffff"
+            android:layout_weight=".5"
+            android:enabled="false"/>
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <RelativeLayout
             android:id="@+id/pop"

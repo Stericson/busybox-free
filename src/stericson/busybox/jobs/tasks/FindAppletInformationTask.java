@@ -58,7 +58,7 @@ public class FindAppletInformationTask extends BaseTask {
     private void findApplet(String applet) {
         result = new ArrayList<String>();
 
-        if (RootTools.findBinary(applet)) {
+        if (RootTools.findBinary(applet) && RootTools.lastFoundBinaryPaths.size() > 0) {
 
             item.setFound(true);
 
@@ -73,10 +73,17 @@ public class FindAppletInformationTask extends BaseTask {
             }
 
             if (item.getAppletPath().equals("")) {
-                item.setAppletPath(paths.get(0));
+                if(paths.size() > 0)
+                {
+                    item.setAppletPath(paths.get(0));
+                }
+                else
+                {
+                    item.setAppletPath("");
+                }
             }
 
-            String symlink = RootTools.getSymlink(item.getAppletPath() + "/" + applet);
+            String symlink = RootTools.getSymlink(item.getAppletPath() + applet);
 
             item.setSymlinkedTo(symlink);
 

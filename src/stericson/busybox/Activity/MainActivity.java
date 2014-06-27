@@ -33,7 +33,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
     //Constants
     private static final int UNINSTALL = 0;
     private static final int INSTALL = 1;
-    private static final int RESTORE = 2;
 
     private TextView header;
     private ViewPager pager;
@@ -42,7 +41,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
     private Button install;
     private Button uninstall;
-    private Button restore;
 
     public TextView view1;
     public TextView view2;
@@ -66,7 +64,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
         install = (Button) findViewById(R.id.install);
         uninstall = (Button) findViewById(R.id.uninstall);
-        restore = (Button) findViewById(R.id.restore);
 
         header = (TextView) findViewById(R.id.header_main);
         header.setTypeface(tf);
@@ -100,28 +97,21 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
     }
 
     public void install(View v) {
+        install.setEnabled(false);
+
         if (App.getInstance().getItemList() == null) {
-            if (RootTools.hasEnoughSpaceOnSdCard(1600)) {
-                if (App.getInstance().getVersion() != null && App.getInstance().getPath() != null) {
-                    install.setEnabled(false);
-                    new InstallJob(this, this, App.getInstance().getPath(), App.getInstance().getVersion()).execute();
-                } else {
-                    initiatePopupWindow(getString(R.string.unexpectederror), false, this);
-                }
-            } else {
-                initiatePopupWindow(this.getString(R.string.sdcard), true, this);
-            }
+            App.getInstance().setSmartInstall(false);
+        }
+
+        if (App.getInstance().getPath() != null) {
+            new InstallJob(this, this, App.getInstance().getPath()).execute();
         } else {
-            this.makeChoice(this, INSTALL, R.string.install_type, R.string.install_type_content, R.string.smart_install, R.string.normal_install);
+            initiatePopupWindow("An unexpected error has occured, please take a screenshot of the application and send it to me at StericDroid@gmail.com", false, this);
         }
     }
 
     public void uninstall(View v) {
         this.makeChoice(this, UNINSTALL, R.string.careful, R.string.beforeUninstall, R.string.uninstall, R.string.cancel);
-    }
-
-    public void restore(View v) {
-        this.initiatePopupWindow(this.getString(R.string.proonly_backup), false, this);
     }
 
     public void uninstallDone() {
@@ -143,7 +133,10 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
         install.setEnabled(true);
 
-        pager.setCurrentItem(2);
+        if(pager != null)
+        {
+            pager.setCurrentItem(2);
+        }
 
         RootTools.remount("/system", "ro");
 
@@ -188,19 +181,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
                 new UninstallJob(this, this).execute();
             }
-        } else if (id == INSTALL) {
-            App.getInstance().setSmartInstall(choice);
-
-            if (RootTools.hasEnoughSpaceOnSdCard(1600)) {
-                if (App.getInstance().getVersion() != null && App.getInstance().getPath() != null) {
-                    install.setEnabled(false);
-                    new InstallJob(this, this, App.getInstance().getPath(), App.getInstance().getVersion()).execute();
-                } else {
-                    initiatePopupWindow(getString(R.string.unexpectederror), false, this);
-                }
-            } else {
-                initiatePopupWindow(this.getString(R.string.sdcard), false, this);
-            }
         }
     }
 
@@ -227,7 +207,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
 //                    this.initiatePopupWindow(getString(R.string.welcome), false, this);
 
-                    restore.setEnabled(true);
                     install.setEnabled(true);
 
                     if (App.getInstance().isInstalled()) {
@@ -297,9 +276,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
         try {
             App.getInstance().setToggled(!App.getInstance().isToggled());
             updateList();
-
-            if (App.getInstance().isToggled())
-                this.initiatePopupWindow(getString(R.string.smartinstall), false, this);
 
             ImageButton toggle = (ImageButton) pager.findViewById(R.id.toggle_smart);
             toggle.setImageDrawable(getResources().getDrawable(App.getInstance().isToggled() ? R.drawable.arrow_up_float : R.drawable.arrow_down_float));

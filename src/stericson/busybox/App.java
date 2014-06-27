@@ -43,6 +43,29 @@ public class App {
         return instance;
     }
 
+    public String getArch()
+    {
+        String arch = System.getProperty("os.arch");
+        String arc = arch.substring(0, 3).toUpperCase();
+
+        if (arc.equals("ARM"))
+        {
+            return Constants.ARM;
+        }
+        else if (arc.equals("MIP"))
+        {
+            return Constants.MIPS;
+        }
+        else if (arc.equals("I68"))
+        {
+            return Constants.X86;
+        }
+        else
+        {
+            return "";
+        }
+    }
+
     public AppletAdapter getAppletadapter() {
         return appletadapter;
     }

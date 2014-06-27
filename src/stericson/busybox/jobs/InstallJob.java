@@ -11,19 +11,17 @@ public class InstallJob extends AsyncJob {
     public static final int INSTALL_JOB = 1253;
 
     private String path;
-    private String version;
     private JobCallback cb;
 
-    public InstallJob(Activity activity, JobCallback cb, String path, String version) {
+    public InstallJob(Activity activity, JobCallback cb, String path) {
         super(activity, R.string.installing, true, false);
         this.path = path;
         this.cb = cb;
-        this.version = version;
     }
 
     @Override
     JobResult handle() {
-        return new InstallTask().execute(this, path, version, false, false);
+        return new InstallTask().execute(this, path, false, false);
     }
 
     public void publishCurrentProgress(Object... values) {

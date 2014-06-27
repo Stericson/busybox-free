@@ -54,6 +54,7 @@ public class TuneAdapter extends BaseAdapter {
         private FontableTextView status;
         private LinearLayout container;
         private CheckBox clean;
+        private CheckBox smartInstall;
         private FontableTextView freeSpace;
     }
 
@@ -119,6 +120,7 @@ public class TuneAdapter extends BaseAdapter {
                 info_holder.status = (FontableTextView) vi.findViewById(R.id.customtune_status);
                 info_holder.options = (LinearLayout) vi.findViewById(R.id.smart_install_options);
                 info_holder.clean = (CheckBox) vi.findViewById(R.id.clean_all);
+                info_holder.smartInstall = (CheckBox) vi.findViewById(R.id.enable_smart);
                 all = (CheckBox) vi.findViewById(R.id.sym_all);
 
                 //assign values, turn things on, hide what we don't need.
@@ -166,6 +168,16 @@ public class TuneAdapter extends BaseAdapter {
 
                     }
                 });
+
+                info_holder.smartInstall
+                        .setOnCheckedChangeListener(new OnCheckedChangeListener() {
+                            public void onCheckedChanged(
+                                    CompoundButton buttonView, boolean isChecked) {
+                            activity.initiatePopupWindow(activity.getString(R.string.proonly_smartInstall), false, activity);
+                            info_holder.smartInstall.setChecked(false);
+
+                            }
+                        });
 
                 vi.setTag(info_holder);
             } else {

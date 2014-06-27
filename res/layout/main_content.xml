@@ -80,7 +80,7 @@
                         android:src="@drawable/arrow_down_float"/>
 
                 <stericson.busybox.custom.FontableTextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
@@ -91,27 +91,38 @@
             </LinearLayout>
 
             <LinearLayout
-                    android:id="@+id/smart_install_options"
-                    android:layout_width="fill_parent"
+                android:id="@+id/smart_install_options"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/smart_install"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <stericson.busybox.custom.FontableCheckBox
+                    android:id="@+id/enable_smart"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/smart_install"
-                    android:layout_marginBottom="10dp"
-                    android:visibility="gone">
+                    android:layout_marginLeft="3dp"
+                    android:text="Enable Smart Install"
+                    android:textSize="13dp"/>
 
                 <stericson.busybox.custom.FontableCheckBox
-                        android:id="@+id/sym_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Replace All (Symlinks all)"
-                        android:textSize="13dp"/>
+                    android:id="@+id/sym_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="Replace All (Symlinks all)"
+                    android:textSize="13dp"/>
 
                 <stericson.busybox.custom.FontableCheckBox
-                        android:id="@+id/clean_all"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="3dp"
-                        android:text="Clean Mode"
-                        android:textSize="13dp"/>
+                    android:id="@+id/clean_all"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="3dp"
+                    android:text="Clean Mode"
+                    android:textSize="13dp"/>
+
             </LinearLayout>
 
             <LinearLayout
@@ -124,7 +135,7 @@
                 <stericson.busybox.custom.FontableTextView
                         android:id="@+id/customtune_status"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="0dp"
                         android:layout_gravity="center_horizontal"
                         android:layout_margin="15dp"
                         android:layout_weight="1"

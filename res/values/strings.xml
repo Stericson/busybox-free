@@ -167,24 +167,16 @@
         If you need an applet added, please email me at StericDroid@gmail.com
     </string>
 
-
-    <string name="smartinstall">Smart install has finished loading, but before you begin tweaking things please be aware
-        that changing the settings and selections for smart install is for advanced users only! \n\n Some binaries found
-        on your system should NOT be replaced by Busybox and doing so can make your device perform in an undesireable
-        manner. The only reason you should tweak the settings below is if you know exactly what you are doing or if you
-        know how to reflash your rom to fix issues that may occur from modifying the selections below.
-    </string>
-    <string name="smart_install_loading">Smart Install is loading...You may go ahead and install Busybox using the
-        normal install method or wait for Smart Install to finish loading.
-    </string>
+    <string name="smart_install_loading">Smart Install is loading...You may go ahead and install Busybox or wait for Smart Install to finish loading.</string>
     <string name="advanced">To access the advanced features of Smart Install, touch the arrow above.</string>
 
     <!-- welcome -->
-    <string name="welcome">Welcome to Busybox! \n\n New features for BusyBox Pro! \n\n New Backup feature for safer
-        installs and for better and safer uninstalls! \n\n New feature to allow the installation of any version of
-        Busybox! \n\n Faster loading times. \n\n Ability to automatically update busybox. \n\n Ability to install
-        specific applets one by one and choosing how they are installed. \n\n The pro version of this application can be
-        found here: https://market.android.com/details?id=stericson.busybox.donate
+    <string name="welcome">Welcome to Busybox! \n\n Busybox now supports devices with Intel processors! \n\n
+        New feature to allow the installation of any version of
+        Busybox! (Pro Only) \n\n Faster loading times. \n\n Ability to automatically update busybox. (Pro Only) \n\n
+        Ability to install specific applets one by one and choosing how they are installed. (Pro Only) \n\n
+        The pro version of this application can be found here:
+        https://market.android.com/details?id=stericson.busybox.donate
     </string>
     <string name="welcome_sale">To celebrate the holidays Busybox Pro is on sale until the end of this month for $1.80 only instead of the regular $4.99 price! \n\n Thanks to everyone for being part of making this the most popular Busybox installer! \n\n The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
@@ -209,13 +201,19 @@
         Busybox. \n\n You can get the pro version here: \n
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
-    <string name="proonly_backup">This feature is only available in the pro version of Busybox. \n\n Please be aware
-        that this feature WILL NOT work if your system is already not working as it is dependent on a backup being made
-        when the system is in a working order. \n\n You can get the pro version here: \n
-        https://market.android.com/details?id=stericson.busybox.donate
+
+    <!-- Notices -->
+    <string name="proonly_smartInstall">This feature will enable smart install which will allow you to customize the install behavior to your specific needs using the options in this list. \n\n
+        This feature is only available in the pro version of Busybox. \n\n You can get the pro version here: \n
+        https://market.android.com/details?id=stericson.busybox.donate</string>
+    <string name="warnSmartInstall">Please be aware that using smart install is for advanced users only! \n\n Some binaries found on your system should NOT be
+        replaced by Busybox and doing so can make your device perform in an undesireable manner. The only reason you
+        should tweak the settings below is if you know exactly what you are doing or if you know how to reflash your rom
+        to fix issues that may occur from modifying the selections below.
     </string>
 
     <!-- Errors -->
+    <string name="device_unsupported">We are sorry but your device is not supported. Please contact me at StericDroid@gmail.com with your device information so I can add support for your device.</string>
     <string name="shell_error">There was a problem opening a shell with root access. This is either being caused by
         superuser/supersu or by a device that is inproperly rooted. \n\n Try removing superuser/supersu permissions,
         uninstalling this application, reinstalling this application, and then regranting superuser/supersu permissions
@@ -225,6 +223,14 @@
     <string name="unexpectederror">An unexpected error has occured, please take a screenshot of the application and send
         it to me at StericDroid@gmail.com
     </string>
+        <string name="binary_verification_failed_install">We could not verify the integrity of the binary selected to be
+        installed and as a result installation will not occur for the safety of your device. Please close the application and
+        reopen it in order to re-attempt installation. If the issue persists, please email me at StericDroid@gmail.com so I can assist you with fixing this issue.
+    </string>
+    <string name="fatal_error">An error occured while trying to install Busybox, try restarting the application and try
+        again or you can email me, StericDroid@gmail.com, about the problem.
+    </string>
+
 
     <!-- pro info -->
     <string name="autoupdate">The auto update feature automatically updates Busybox when a new version is available

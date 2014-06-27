@@ -3,7 +3,9 @@ package stericson.busybox;
 
 public class Constants {
 
-    public static String toolbox = "/data/local/toolbox";
+    public static final String  ARM = "arm",
+                                X86 = "x86",
+                                MIPS = "mips";
 
     private static int
             NONE = 0,
@@ -17,7 +19,7 @@ public class Constants {
             EXTRA_BUSYBOX_VERSION = "version",
             EXTRA_INSTALL_PATH = "path";
 
-    public static String[] versions = {"Busybox 1.22.1", "Busybox 1.21.1", "Custom Version"};
+    public static String[] versions = {"Busybox 1.22.1", "Custom Version"};
 
     public static String[] locations = {"/system/xbin", "/system/bin", "Custom Path"};
 
