@@ -170,7 +170,19 @@ public class Common {
     }
 
     public static boolean setupBusybox(Context context, String binary, boolean isCustom) {
-        String storagePath = context.getFilesDir().toString() + "/bb";
+
+        //sometimes this can cause a nullpointer
+        //reference https://code.google.com/p/android/issues/detail?id=8886
+        String storagePath;
+
+        try
+        {
+            storagePath = context.getFilesDir().toString() + "/bb";
+        }
+        catch (NullPointerException e)
+        {
+            storagePath = context.getFilesDir().toString() + "/bb";
+        }
 
         new File(storagePath + "/busybox").delete();
 
@@ -221,18 +233,12 @@ public class Common {
 
 
         if (RootTools.exists(storagePath + "/busybox")) {
-            try {
-                command = new ShellCommand(new CCB(), 0,
-                        "toolbox chmod 0755 " + storagePath + "/busybox",
-                        "chmod 0755 " + storagePath + "/busybox");
-                RootTools.getShell(true).add(command);
-                command.pause();
-
-            } catch (Exception e) {}
-
             return true;
-        } else
+        }
+        else
+        {
             return false;
+        }
     }
 
     public static class CCB implements CommandCallback {

@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Free.iml" filepath="$PROJECT_DIR$/Free.iml" />
-      <module fileurl="file://$PROJECT_DIR$/busybox-free.iml" filepath="$PROJECT_DIR$/busybox-free.iml" />
       <module fileurl="file://$PROJECT_DIR$/view_pager_JW/view_pager_JW.iml" filepath="$PROJECT_DIR$/view_pager_JW/view_pager_JW.iml" />
     </modules>
   </component>

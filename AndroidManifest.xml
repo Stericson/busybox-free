@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="stericson.busybox"
-          android:versionName="12" android:versionCode="161">
+          android:versionName="13" android:versionCode="162">
 
-    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="11"/>
+    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="20"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
     <uses-permission android:name="android.permission.ACCESS_SUPERUSER"/>
+
+    <supports-screens
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:anyDensity="true"/>
 
 
     <application android:icon="@drawable/icon" android:label="BusyBox Free" android:theme="@style/CustomButton">
@@ -28,9 +34,4 @@
 
     </application>
 
-    <supports-screens
-            android:largeScreens="true"
-            android:normalScreens="true"
-            android:smallScreens="true"
-            android:anyDensity="true"/>
-</manifest> 
+</manifest>

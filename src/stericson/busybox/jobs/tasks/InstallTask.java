@@ -63,18 +63,6 @@ public class InstallTask extends BaseTask
             result.setError(context.getString(R.string.fatal_error));
             return result;
         }
-        else
-        {
-            //Check the integrity of the file
-            String tmp_version = RootTools.getBusyBoxVersion(context.getFilesDir().toString() + "/bb");
-
-            if (tmp_version.equals(""))
-            {
-                result.setSuccess(false);
-                result.setError(context.getString(R.string.binary_verification_failed_install));
-                return result;
-            }
-        }
 
         try
         {

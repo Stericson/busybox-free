@@ -13,7 +13,7 @@ public class Constants {
             NEW = 2,
             BOTH = 3;
 
-    public static int updateType = UPDATE;
+    public static int updateType = NONE;
 
     public static String
             EXTRA_BUSYBOX_VERSION = "version",
