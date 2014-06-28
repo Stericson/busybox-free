@@ -44,7 +44,7 @@ public class Location implements OnItemSelectedListener, JobCallback {
                                 activity.setCustomPath("");
                             }
 
-                            new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).execute();
+                            new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).start();
 
                         }
                     }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
@@ -54,7 +54,7 @@ public class Location implements OnItemSelectedListener, JobCallback {
                     App.getInstance().setPathPosition(0);
                     activity.setCustomPath("");
 
-                    new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).execute();
+                    new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).start();
 
                 }
             }).show();
@@ -62,7 +62,7 @@ public class Location implements OnItemSelectedListener, JobCallback {
             activity.setCustomPath("");
             App.getInstance().setPathPosition(0);
             App.getInstance().setPath(arg0.getSelectedItem().toString());
-            new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).execute();
+            new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).start();
         }
     }
 

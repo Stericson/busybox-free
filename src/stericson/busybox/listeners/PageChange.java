@@ -32,7 +32,7 @@ public class PageChange implements OnPageChangeListener, JobCallback {
         if (position == 0) {
             context.initiatePopupWindow("This feature allows you to install, uninstall, or reinstall the applets listed below on an individual basis. \n\n This feature will also tell you a little information about the applet and whether or not it is currently installed or symlinked. \n\n This feature is useful if you are having a problem with a specific applet not functioning correctly. \n\n To access this feature, please long press on an applet.", false, context);
         } else if (position == 1) {
-            new FindBBVersionJob(context, this).execute();
+            new FindBBVersionJob(context, this).start();
         }
     }
 
@@ -48,7 +48,8 @@ public class PageChange implements OnPageChangeListener, JobCallback {
             context.updateList();
             PageAdapter.updateBusyboxInformation();
         } else if (id == FindBBVersionJob.FIND_BB_VERSION_JOB) {
-            new FindBBLocationsJob(context, this, true).execute();
+            new FindBBLocationsJob(context, this, true).start();
+            PageAdapter.updateBusyboxInformation();
         } else if (id == FindFreeSpaceJob.FIND_FREE_SPACE_JOB) {
             context.updateList();
 //            context.getFreeSpace().setText(result.getSpace() != -1 ? context.getString(R.string.amount) + " " + (context.getCustomPath().equals("") ? "/system" : context.getCustomPath()) + " " + result.getSpace() + "mb" : "");

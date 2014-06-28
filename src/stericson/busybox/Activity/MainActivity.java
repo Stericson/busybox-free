@@ -68,7 +68,7 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
         header = (TextView) findViewById(R.id.header_main);
         header.setTypeface(tf);
 
-        new InitialChecksJob(this, this).execute();
+        new InitialChecksJob(this, this).start();
 
         final CheckBox autoupdate = (CheckBox) findViewById(R.id.autoupdate);
         autoupdate.setOnCheckedChangeListener(new OnCheckedChangeListener() {
@@ -104,7 +104,7 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
         }
 
         if (App.getInstance().getPath() != null) {
-            new InstallJob(this, this, App.getInstance().getPath()).execute();
+            new InstallJob(this, this, App.getInstance().getPath()).start();
         } else {
             initiatePopupWindow("An unexpected error has occured, please take a screenshot of the application and send it to me at StericDroid@gmail.com", false, this);
         }
@@ -179,7 +179,7 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
             if (choice) {
                 uninstall.setEnabled(false);
 
-                new UninstallJob(this, this).execute();
+                new UninstallJob(this, this).start();
             }
         }
     }
@@ -191,7 +191,7 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
                 if (result.getError() != null && !result.getError().equals(""))
                     this.initiatePopupWindow(result.getError(), true, this);
                 else {
-                    new FindAppletInformationJob(this, this, false).execute();
+                    new FindAppletInformationJob(this, this, false).start();
 
                     initiatePager();
 

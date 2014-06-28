@@ -150,7 +150,6 @@ public class PageAdapter extends PagerAdapter implements TitleProvider {
     public static void updateBusyboxInformation() {
         try {
             foundAt.setText(App.getInstance().getFound());
-        } catch (Exception ignore) {
-        }
+        } catch (Exception ignore) {}
     }
 }

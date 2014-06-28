@@ -41,18 +41,8 @@ public class InstallTask extends BaseTask
         this.silent = silent;
         Context context = j.getContext();
 
-        //sometimes this can cause a nullpointer
-        //reference https://code.google.com/p/android/issues/detail?id=8886
-        String binaryLocation;
+        String binaryLocation = "/data/local/busybox";
 
-        try
-        {
-            binaryLocation = context.getFilesDir().toString() + "/bb/busybox";
-        }
-        catch (NullPointerException e)
-        {
-            binaryLocation = context.getFilesDir().toString() + "/bb/busybox";
-        }
 
         JobResult result = new JobResult();
         result.setSuccess(true);
@@ -62,6 +52,18 @@ public class InstallTask extends BaseTask
             result.setSuccess(false);
             result.setError(context.getString(R.string.fatal_error));
             return result;
+        }
+        else
+        {
+            //Check the integrity of the file
+            String tmp_version = RootTools.getBusyBoxVersion(binaryLocation.substring(0, binaryLocation.indexOf("busybox")));
+
+            if (tmp_version.equals(""))
+            {
+                result.setSuccess(false);
+                result.setError(context.getString(R.string.binary_verification_failed_install));
+                return result;
+            }
         }
 
         try

@@ -59,6 +59,18 @@ public abstract class AsyncJob extends AsyncTask<Void, Object, JobResult> {
         return handle();
     }
 
+    public void start()
+    {
+        if(android.os.Build.VERSION.SDK_INT > 10)
+        {
+            this.executeOnExecutor(THREAD_POOL_EXECUTOR);
+        }
+        else
+        {
+            super.execute();
+        }
+    }
+
     @Override
     protected void onPreExecute() {
         // Show spinner.
@@ -74,7 +86,7 @@ public abstract class AsyncJob extends AsyncTask<Void, Object, JobResult> {
             context.findViewById(R.id.main).post(new Runnable() {
                 public void run() {
                     try {
-                        popupWindow.showAtLocation(context.findViewById(R.id.main), Gravity.CENTER, 0, 250);
+                        popupWindow.showAtLocation(context.findViewById(R.id.main), Gravity.CENTER, 0, 0);
                     } catch (Exception e) {
                         //do nothing
                     }

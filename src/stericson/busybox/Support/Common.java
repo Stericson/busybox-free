@@ -88,15 +88,23 @@ public class Common {
         if (RootTools.exists(storageLocation.getPath() + "/busybox")) {
             try {
                 command = new ShellCommand(new CCB(), 0,
-                        "toolbox chmod 0755 " + storageLocation.getPath() + "/busybox",
-                        "chmod 0755 " + storageLocation.getPath() + "/busybox");
+
+                        "dd if=" + storageLocation.getPath() + "/busybox of=/data/local/busybox",
+                        "toolbox chmod 0755 /data/local/busybox",
+                        "chmod 0755 /data/local/busybox");
                 RootTools.getShell(true).add(command);
                 command.pause();
+
+                new File(storageLocation.getPath() + "/busybox").delete();
+
+                return true;
 
             } catch (Exception e) {}
         }
 
-        return true;
+        new File(storageLocation.getPath() + "/busybox").delete();
+
+        return false;
     }
 
     public static String getSingleBusyBoxPath() {
@@ -158,87 +166,6 @@ public class Common {
         }
 
         return locations;
-    }
-
-    public static int getDIP(Activity context, int size) {
-        //How much room do we have?
-        DisplayMetrics dm = new DisplayMetrics();
-        context.getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int dpi = dm.densityDpi;
-
-        return (int) (size * ((float) dpi / (float) 160));
-    }
-
-    public static boolean setupBusybox(Context context, String binary, boolean isCustom) {
-
-        //sometimes this can cause a nullpointer
-        //reference https://code.google.com/p/android/issues/detail?id=8886
-        String storagePath;
-
-        try
-        {
-            storagePath = context.getFilesDir().toString() + "/bb";
-        }
-        catch (NullPointerException e)
-        {
-            storagePath = context.getFilesDir().toString() + "/bb";
-        }
-
-        new File(storagePath + "/busybox").delete();
-
-        InputStream is = null;
-        OutputStream os = null;
-        byte[] buffer = new byte[2048];
-        int bytes_read = 0;
-
-        String realFile = "";
-
-        if (binary.contains("1.22.1")) {
-            realFile = "busybox1.22.1.png";
-        }
-        else if (binary.contains("1.21.1")) {
-            realFile = "busybox1.21.1.png";
-        }
-
-
-        //Create the storagePath if it does not exist.
-        File tmp = new File(storagePath);
-        if (!tmp.exists())
-            tmp.mkdir();
-
-        try {
-            if (isCustom)
-                is = new FileInputStream(new File(binary));
-            else
-                is = context.getResources().getAssets().open(realFile);
-
-            os = new FileOutputStream(new File(storagePath + "/busybox"));
-
-            while ((bytes_read = is.read(buffer)) != -1) {
-                os.write(buffer, 0, bytes_read);
-            }
-
-        } catch (Exception ignore) {
-        } finally {
-            try {
-                is.close();
-            } catch (Exception ignore) {
-            }
-
-            try {
-                os.close();
-            } catch (Exception ignore) {
-            }
-        }
-
-
-        if (RootTools.exists(storagePath + "/busybox")) {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 
     public static class CCB implements CommandCallback {
