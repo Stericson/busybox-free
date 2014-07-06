@@ -59,18 +59,6 @@ public abstract class AsyncJob extends AsyncTask<Void, Object, JobResult> {
         return handle();
     }
 
-    public void start()
-    {
-        if(android.os.Build.VERSION.SDK_INT > 10)
-        {
-            this.executeOnExecutor(THREAD_POOL_EXECUTOR);
-        }
-        else
-        {
-            super.execute();
-        }
-    }
-
     @Override
     protected void onPreExecute() {
         // Show spinner.
@@ -198,5 +186,17 @@ public abstract class AsyncJob extends AsyncTask<Void, Object, JobResult> {
     @Override
     protected void onProgressUpdate(Object... values) {
         super.onProgressUpdate(values);
+    }
+
+    public void start()
+    {
+        if(android.os.Build.VERSION.SDK_INT > 10)
+        {
+            this.executeOnExecutor(THREAD_POOL_EXECUTOR);
+        }
+        else
+        {
+            super.execute();
+        }
     }
 }

@@ -1,9 +1,6 @@
 package stericson.busybox.Support;
 
-import android.app.Activity;
 import android.content.Context;
-import android.util.DisplayMetrics;
-
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.Shell;
 
@@ -20,6 +17,7 @@ import java.util.List;
 import java.util.Set;
 
 import stericson.busybox.App;
+import stericson.busybox.Constants;
 import stericson.busybox.interfaces.CommandCallback;
 
 public class Common {
@@ -34,23 +32,25 @@ public class Common {
 
         //sometimes this can cause a nullpointer
         //reference https://code.google.com/p/android/issues/detail?id=8886
-        File storageLocation;
+        File storageDir;
 
         try
         {
-            storageLocation = new File(context.getFilesDir().toString() + "/bb");
+            Constants.storageLocation = context.getFilesDir().toString() + "/bb/";
         }
         catch (NullPointerException e)
         {
-            storageLocation = new File(context.getFilesDir().toString() + "/bb");
+            //try to use the path that was set manually in the constant...
         }
 
-        if(!storageLocation.exists())
+        storageDir = new File(Constants.storageLocation);
+
+        if(!storageDir.exists())
         {
-            storageLocation.mkdirs();
+            storageDir.mkdirs();
         }
 
-        new File(storageLocation.getPath() + "/busybox").delete();
+        new File(storageDir.getPath() + "/busybox").delete();
 
         try {
 
@@ -66,7 +66,7 @@ public class Common {
             }
 
             OutputStream out = new FileOutputStream(
-                    storageLocation.getPath() + "/busybox");
+                    storageDir.getPath() + "/busybox");
             byte[] buf = new byte[1024];
             int len;
 
@@ -85,26 +85,18 @@ public class Common {
             return false;
         }
 
-        if (RootTools.exists(storageLocation.getPath() + "/busybox")) {
+        if (RootTools.exists(storageDir.getPath() + "/busybox")) {
             try {
                 command = new ShellCommand(new CCB(), 0,
-
-                        "dd if=" + storageLocation.getPath() + "/busybox of=/data/local/busybox",
-                        "toolbox chmod 0755 /data/local/busybox",
-                        "chmod 0755 /data/local/busybox");
-                RootTools.getShell(true).add(command);
+                        "toolbox chmod 0755 " + Constants.storageLocation + "busybox",
+                        "chmod 0755 " + Constants.storageLocation + "busybox");
+                RootTools.getShell(true, Shell.ShellContext.SYSTEM_APP).add(command);
                 command.pause();
-
-                new File(storageLocation.getPath() + "/busybox").delete();
-
-                return true;
 
             } catch (Exception e) {}
         }
 
-        new File(storageLocation.getPath() + "/busybox").delete();
-
-        return false;
+        return RootTools.exists(Constants.storageLocation + "busybox");
     }
 
     public static String getSingleBusyBoxPath() {

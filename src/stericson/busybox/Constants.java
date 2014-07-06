@@ -15,9 +15,10 @@ public class Constants {
 
     public static int updateType = NONE;
 
-    public static String
-            EXTRA_BUSYBOX_VERSION = "version",
-            EXTRA_INSTALL_PATH = "path";
+    public static final String  EXTRA_BUSYBOX_VERSION = "version",
+                                EXTRA_INSTALL_PATH = "path";
+
+    public static String storageLocation = "/data/data/stericson.busybox/files/bb/";
 
     public static String[] versions = {"Busybox 1.22.1", "Custom Version"};
 

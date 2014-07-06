@@ -5,9 +5,8 @@ import android.content.Context;
 import com.stericson.RootTools.RootTools;
 import com.stericson.RootTools.execution.Shell;
 
-import java.io.File;
-
 import stericson.busybox.App;
+import stericson.busybox.Constants;
 import stericson.busybox.R;
 import stericson.busybox.Support.Common;
 import stericson.busybox.Support.ShellCommand;
@@ -41,7 +40,7 @@ public class InstallTask extends BaseTask
         this.silent = silent;
         Context context = j.getContext();
 
-        String binaryLocation = "/data/local/busybox";
+        String binaryLocation = Constants.storageLocation + "busybox";
 
 
         JobResult result = new JobResult();
@@ -55,8 +54,14 @@ public class InstallTask extends BaseTask
         }
         else
         {
+            //change the default shell context here and only here...
+            Shell.defaultContext = Shell.ShellContext.SYSTEM_APP;
+
             //Check the integrity of the file
-            String tmp_version = RootTools.getBusyBoxVersion(binaryLocation.substring(0, binaryLocation.indexOf("busybox")));
+            String tmp_version = RootTools.getBusyBoxVersion(Constants.storageLocation);
+
+            //change it back
+            Shell.defaultContext = Shell.ShellContext.NORMAL;
 
             if (tmp_version.equals(""))
             {
@@ -64,6 +69,7 @@ public class InstallTask extends BaseTask
                 result.setError(context.getString(R.string.binary_verification_failed_install));
                 return result;
             }
+
         }
 
         try
