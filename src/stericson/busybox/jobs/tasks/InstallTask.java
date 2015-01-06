@@ -3,7 +3,7 @@ package stericson.busybox.jobs.tasks;
 import android.content.Context;
 
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.execution.Shell;
+import com.stericson.RootShell.execution.Shell;
 
 import stericson.busybox.App;
 import stericson.busybox.Constants;
@@ -40,7 +40,7 @@ public class InstallTask extends BaseTask
         this.silent = silent;
         Context context = j.getContext();
 
-        String binaryLocation = Constants.storageLocation + "busybox";
+        String binaryLocation = Constants.preparedLocation + "busybox";
 
 
         JobResult result = new JobResult();
@@ -54,14 +54,8 @@ public class InstallTask extends BaseTask
         }
         else
         {
-            //change the default shell context here and only here...
-            Shell.defaultContext = Shell.ShellContext.SYSTEM_APP;
-
             //Check the integrity of the file
-            String tmp_version = RootTools.getBusyBoxVersion(Constants.storageLocation);
-
-            //change it back
-            Shell.defaultContext = Shell.ShellContext.NORMAL;
+            String tmp_version = RootTools.getBusyBoxVersion(Constants.preparedLocation);
 
             if (tmp_version.equals(""))
             {

@@ -58,14 +58,13 @@ public class FindAppletInformationTask extends BaseTask {
     private void findApplet(String applet) {
         result = new ArrayList<String>();
 
-        if (RootTools.findBinary(applet) && RootTools.lastFoundBinaryPaths.size() > 0) {
+        List<String> foundPaths = RootTools.findBinary(applet);
+
+        if (foundPaths.size() > 0) {
 
             item.setFound(true);
 
-            List<String> paths = new ArrayList<String>();
-            paths.addAll(RootTools.lastFoundBinaryPaths);
-
-            for (String path : paths) {
+            for (String path : foundPaths) {
                 if (path != null && path.contains("/system/bin")) {
                     item.setAppletPath(path);
                     break;
@@ -73,9 +72,9 @@ public class FindAppletInformationTask extends BaseTask {
             }
 
             if (item.getAppletPath().equals("")) {
-                if(paths.size() > 0)
+                if(foundPaths.size() > 0)
                 {
-                    item.setAppletPath(paths.get(0));
+                    item.setAppletPath(foundPaths.get(0));
                 }
                 else
                 {
@@ -135,5 +134,7 @@ public class FindAppletInformationTask extends BaseTask {
         if (id == FIND_APPLET_INFORMATION) {
             result.add(line);
         }
+
+        super.commandOutput(id, line);
     }
 }

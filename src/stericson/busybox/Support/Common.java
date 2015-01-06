@@ -1,8 +1,11 @@
 package stericson.busybox.Support;
 
 import android.content.Context;
+
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.execution.Command;
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.execution.Shell;
+import com.stericson.RootShell.execution.Shell;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -27,7 +30,23 @@ public class Common {
     static ShellCommand command;
     static List<String> paths = new ArrayList<String>();
 
+    public static void cleanExtractedBusybox()
+    {
+        try {
+
+            //prepares Busybox for installation
+            Command command = new Command(0,
+                    "rm " + Constants.preparedLocation + "busybox");
+            Shell shell = RootShell.getShell(true);
+            shell.add(command);
+
+        } catch (Exception e) {}
+
+    }
+
     public static boolean extractBusybox(Context context, String customBinaryLocation) {
+
+        String binaryLocation = customBinaryLocation.length() > 0 ? customBinaryLocation : Constants.storageLocation;
         String realFile = "busybox-" + App.getInstance().getArch() + ".png";
 
         //sometimes this can cause a nullpointer
@@ -85,18 +104,18 @@ public class Common {
             return false;
         }
 
-        if (RootTools.exists(storageDir.getPath() + "/busybox")) {
-            try {
-                command = new ShellCommand(new CCB(), 0,
-                        "toolbox chmod 0755 " + Constants.storageLocation + "busybox",
-                        "chmod 0755 " + Constants.storageLocation + "busybox");
-                RootTools.getShell(true, Shell.ShellContext.SYSTEM_APP).add(command);
-                command.pause();
+        try {
 
-            } catch (Exception e) {}
-        }
+            //prepares Busybox for installation
+            Command command = new Command(0,
+                    "dd if=" + binaryLocation + "busybox of=" + Constants.preparedLocation + "busybox",
+                    "chmod 0755 " + Constants.preparedLocation + "busybox");
+            Shell shell = RootShell.getShell(true);
+            shell.add(command);
 
-        return RootTools.exists(Constants.storageLocation + "busybox");
+        } catch (Exception e) {}
+
+        return RootTools.exists(binaryLocation + "busybox");
     }
 
     public static String getSingleBusyBoxPath() {

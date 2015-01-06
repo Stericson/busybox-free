@@ -64,25 +64,9 @@
     <string name="installing">Installing Busybox... \n\n</string>
 
     <!-- AFTER INSTALL -->
-    <string name="installedsame">The version of BusyBox installed now is the same as the version of BusyBox installed
-        before the installation. \n\n
-        If this was so desired, then ignore this, otherwise try choosing a different installation path and making sure
-        your phone and ROM meets all of the requirements mentioned before.
-    </string>
     <string name="installedunique">It looks like the installation of BusyBox was successful! Congratulations! \n\n
         Keep in mind that by keeping this installed you will be notified whenever a new version of BusyBox is ready to
         be installed.
-    </string>
-    <string name="installedunique_noroot">It looks like the installation of BusyBox was successful! Congratulations!
-        \n\n
-        Keep in mind that by keeping this installed you will be notified whenever a new version of BusyBox is ready to
-        be installed. \n\n
-        Also keep in mind that since root access was not provided I cannot guarantee that Busybox will work correctly.
-    </string>
-    <string name="installedmultiple">It looks like you have BusyBox installed, but there are multiple copies still
-        installed. \n\n
-        This means that something may have gone wrong in the installation process. Please verify on your end that
-        everything is correctly installed and working.
     </string>
     <string name="installedsomethingelse">It looks like BusyBox is installed, but It does not appear to be the version
         that you selected to have installed, you may want to try the installation again but this time using a different
@@ -178,7 +162,7 @@
         The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
-    <string name="welcome_sale">To celebrate the holidays Busybox Pro is on sale until the end of this month for $1.80 only instead of the regular $4.99 price! \n\n Thanks to everyone for being part of making this the most popular Busybox installer! \n\n The pro version of this application can be found here:
+    <string name="welcome_sale">For a limited time only, Busybox Pro is on sale for $1.80 only instead of the regular $4.99 price! \n\n Thanks to everyone for being part of making this the most popular Busybox installer! \n\n The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
 
@@ -213,7 +197,7 @@
     </string>
 
     <!-- Errors -->
-    <string name="device_unsupported">We are sorry but your device is not supported. Please contact me at StericDroid@gmail.com with your device information so I can add support for your device.</string>
+    <string name="device_unsupported">Unrecognized device architecture. This should be an easy fix for me to make, please email me at StericDroid@gmail.com with your device information and the following information: </string>
     <string name="shell_error">There was a problem opening a shell with root access. This is either being caused by
         superuser/supersu or by a device that is inproperly rooted. \n\n Try removing superuser/supersu permissions,
         uninstalling this application, reinstalling this application, and then regranting superuser/supersu permissions
@@ -223,12 +207,12 @@
     <string name="unexpectederror">An unexpected error has occured, please take a screenshot of the application and send
         it to me at StericDroid@gmail.com
     </string>
-        <string name="binary_verification_failed_install">We could not verify the integrity of the binary selected to be
-        installed and as a result installation will not occur for the safety of your device. Please close the application and
-        reopen it in order to re-attempt installation. If the issue persists, please email me at StericDroid@gmail.com so I can assist you with fixing this issue.
-    </string>
     <string name="fatal_error">An error occured while trying to install Busybox, try restarting the application and try
         again or you can email me, StericDroid@gmail.com, about the problem.
+    </string>
+    <string name="binary_verification_failed_install">We could not verify the integrity of the binary selected to be
+        installed and as a result installation will not occur for the safety of your device. Please close the application and
+        reopen it in order to re-attempt installation. If the issue persists, please email me at StericDroid@gmail.com so I can assist you with fixing this issue.
     </string>
 
 

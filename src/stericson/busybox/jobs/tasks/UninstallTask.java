@@ -1,18 +1,12 @@
 package stericson.busybox.jobs.tasks;
 
 import android.content.Context;
-import android.os.Environment;
 
+import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.containers.Symlink;
-import com.stericson.RootTools.execution.Shell;
-
-import java.io.File;
-
+import java.util.List;
 import stericson.busybox.App;
-import stericson.busybox.Constants;
 import stericson.busybox.R;
-import stericson.busybox.Support.Common;
 import stericson.busybox.Support.ShellCommand;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.JobResult;
@@ -61,9 +55,9 @@ public class UninstallTask extends BaseTask {
             {
                 j.publishCurrentProgress("Removing BusyBox!");
 
-                RootTools.findBinary("busybox");
+                List<String> foundPaths = RootTools.findBinary("busybox");
 
-                for (String binaryPath : RootTools.lastFoundBinaryPaths)
+                for (String binaryPath : foundPaths)
                 {
                     RootTools.remount(binaryPath, "rw");
                     command = new ShellCommand(this, 0,

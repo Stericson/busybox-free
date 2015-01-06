@@ -76,8 +76,8 @@
                         android:layout_gravity="center"
                         android:background="@android:color/transparent"
                         android:gravity="center"
-                        android:onClick="toggle_smart"
-                        android:src="@drawable/arrow_down_float"/>
+                        android:onClick="toggleSmart"
+                        android:src="@drawable/arrow_up_float"/>
 
                 <stericson.busybox.custom.FontableTextView
                         android:layout_width="0dp"

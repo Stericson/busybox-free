@@ -7,13 +7,14 @@ import stericson.busybox.adapter.AppletAdapter;
 import stericson.busybox.adapter.TuneAdapter;
 import stericson.busybox.jobs.containers.Item;
 
+import android.util.Log;
 import android.view.View;
 
 public class App {
     private static App instance = null;
     private List<Item> itemList;
     private View popupView;
-    private boolean toggled = false;
+    private boolean toggled = true;
     private boolean smartInstall = false;
     private boolean isInstalled = false;
     private String path = "";
@@ -46,9 +47,9 @@ public class App {
     public String getArch()
     {
         String arch = System.getProperty("os.arch");
-        String arc = arch.substring(0, 3).toUpperCase();
+        String arc = (arch.substring(0, 3)).toUpperCase();
 
-        if (arc.equals("ARM"))
+        if (arc.equals("ARM") || arc.equals("AAR"))
         {
             return Constants.ARM;
         }
@@ -56,13 +57,15 @@ public class App {
         {
             return Constants.MIPS;
         }
-        else if (arc.equals("I68"))
+        else if ((arc.equals("I68") || arc.contains("68")) || arc.equals("X86"))
         {
             return Constants.X86;
         }
         else
         {
-            return "";
+            Log.e("Stericson-Busybox", "Unknown arch: " + arc);
+
+            return arc;
         }
     }
 

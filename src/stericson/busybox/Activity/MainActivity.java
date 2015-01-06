@@ -25,8 +25,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.stericson.RootTools.RootTools;
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.CommandCapture;
 import com.viewpagerindicator.TitlePageIndicator;
 
 import java.util.Calendar;
@@ -154,22 +152,10 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
                 thisVersion = "";
             }
 
-            if (currentVersion == null) {
-                currentVersion = "-1";
-            }
-
             if (thisVersion.contains(App.getInstance().getVersion().toLowerCase().replace("busybox", "").trim())) {
-                if (currentVersion.equals(thisVersion)) {
-                    initiatePopupWindow(this.getString(R.string.installedsame), false, this);
-                } else {
-                    initiatePopupWindow(this.getString(R.string.installedunique), false, this);
-                }
+                initiatePopupWindow(this.getString(R.string.installedunique), false, this);
             } else {
-                if (currentVersion.equals(thisVersion)) {
-                    initiatePopupWindow(this.getString(R.string.installedsame), false, this);
-                } else {
-                    initiatePopupWindow(this.getString(R.string.installedsomethingelse), false, this);
-                }
+                initiatePopupWindow(this.getString(R.string.installedsomethingelse), false, this);
             }
         } else {
             initiatePopupWindow(this.getString(R.string.failed), true, this);
@@ -200,7 +186,8 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
                     Calendar cal = Calendar.getInstance();
 
-                    boolean showPromo = ((cal.get(Calendar.DAY_OF_MONTH) >= 25 && cal.get(Calendar.MONTH) == 10 && cal.get(Calendar.YEAR) == 2013));
+                    boolean showPromo = true;
+//                    boolean showPromo = ((cal.get(Calendar.DAY_OF_MONTH) >= 9 && cal.get(Calendar.DAY_OF_MONTH) <= 17 && cal.get(Calendar.MONTH) == 9 && cal.get(Calendar.YEAR) == 2014));
 
                     if (showPromo) {
                     	this.initiatePopupWindow(getString(R.string.welcome_sale), false, this);
@@ -275,7 +262,7 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
         }
     }
 
-    public void toggle_smart(View v) {
+    public void toggleSmart(View v) {
         try {
             App.getInstance().setToggled(!App.getInstance().isToggled());
             updateList();

@@ -3,8 +3,7 @@ package stericson.busybox.listeners;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.stericson.RootTools.execution.Command;
-import com.stericson.RootTools.execution.Shell;
+import com.stericson.RootShell.execution.Shell;
 import stericson.busybox.R;
 import stericson.busybox.Activity.BaseActivity;
 import stericson.busybox.Support.CommandResult;

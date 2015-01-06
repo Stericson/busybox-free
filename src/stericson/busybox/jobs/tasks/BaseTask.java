@@ -4,9 +4,6 @@ import stericson.busybox.Support.CommandResult;
 import stericson.busybox.Support.ShellCommand;
 import stericson.busybox.interfaces.CommandCallback;
 
-/**
- * Created by Stephen Erickson on 7/10/13.
- */
 public class BaseTask implements CommandCallback {
 
     protected ShellCommand command = null;

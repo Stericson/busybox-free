@@ -13,14 +13,15 @@ public class Constants {
             NEW = 2,
             BOTH = 3;
 
-    public static int updateType = NONE;
+    public static int updateType = NEW;
 
     public static final String  EXTRA_BUSYBOX_VERSION = "version",
                                 EXTRA_INSTALL_PATH = "path";
 
     public static String storageLocation = "/data/data/stericson.busybox/files/bb/";
+    public static String preparedLocation = "/data/local/";
 
-    public static String[] versions = {"Busybox 1.22.1", "Custom Version"};
+    public static String[] versions = {"Busybox 1.23.0", "Custom Version"};
 
     public static String[] locations = {"/system/xbin", "/system/bin", "Custom Path"};
 

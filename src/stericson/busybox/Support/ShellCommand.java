@@ -1,12 +1,9 @@
 package stericson.busybox.Support;
 
-import com.stericson.RootTools.execution.Command;
+import com.stericson.RootShell.execution.Command;
 
 import stericson.busybox.interfaces.CommandCallback;
 
-/**
- * Created by Stephen Erickson on 7/9/13.
- */
 public class ShellCommand extends Command {
 
     CommandCallback cb = null;
@@ -31,27 +28,41 @@ public class ShellCommand extends Command {
 
     @Override
     public void commandOutput(int i, String s) {
-        cb.commandOutput(i, s);
+
+        if(this.cb != null)
+        {
+            cb.commandOutput(i, s);
+        }
+
+        super.commandOutput(i, s);
     }
 
     @Override
     public void commandTerminated(int i, String s) {
-        CommandResult r = new CommandResult();
-        r.setSuccess(false);
-        r.setError(s);
-        r.setId(i);
 
-        cb.commandCallback(r);
+        if(this.cb != null)
+        {
+            CommandResult r = new CommandResult();
+            r.setSuccess(false);
+            r.setError(s);
+            r.setId(i);
+
+            cb.commandCallback(r);
+        }
     }
 
     @Override
     public void commandCompleted(int i, int i2) {
-        CommandResult r = new CommandResult();
-        r.setSuccess(true);
-        r.setExitCode(i2);
-        r.setId(i);
 
-        cb.commandCallback(r);
+        if(this.cb != null)
+        {
+            CommandResult r = new CommandResult();
+            r.setSuccess(true);
+            r.setExitCode(i2);
+            r.setId(i);
+
+            cb.commandCallback(r);
+        }
     }
 
     //pauser

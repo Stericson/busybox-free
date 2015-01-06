@@ -8,6 +8,8 @@ import java.util.Set;
 import stericson.busybox.R;
 import stericson.busybox.Support.Common;
 import stericson.busybox.interfaces.Choice;
+import stericson.busybox.jobs.AsyncJob;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -44,6 +46,14 @@ public class BaseActivity extends Activity {
             tf = Typeface.createFromAsset(getAssets(), "fonts/DJGROSS.ttf");
         } catch (Exception e) {
         }
+    }
+
+    @Override
+    public void onDestroy()
+    {
+        Common.cleanExtractedBusybox();
+        AsyncJob.cancelAllJobs(this);
+        super.onDestroy();
     }
 
     @Override

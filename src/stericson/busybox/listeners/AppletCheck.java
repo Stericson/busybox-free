@@ -2,7 +2,7 @@ package stericson.busybox.listeners;
 
 import java.util.ArrayList;
 import java.util.List;
-import com.stericson.RootTools.execution.Shell;
+import com.stericson.RootShell.execution.Shell;
 import stericson.busybox.R;
 import stericson.busybox.Activity.BaseActivity;
 import stericson.busybox.Support.CommandResult;
@@ -35,9 +35,11 @@ public class AppletCheck implements OnItemSelectedListener, CommandCallback {
 
             String appletInfo = "";
 
-            if (RootTools.findBinary(applet)) {
-                appletInfo += activity.getString(R.string.foundhere) + " " + RootTools.lastFoundBinaryPaths.get(0);
-                String symlink = RootTools.getSymlink(RootTools.lastFoundBinaryPaths.get(0) + "/" + applet);
+            List<String> foundPaths = RootTools.findBinary(applet);
+
+            if (foundPaths.size() > 0) {
+                appletInfo += activity.getString(R.string.foundhere) + " " + foundPaths.get(0);
+                String symlink = RootTools.getSymlink(foundPaths.get(0) + "/" + applet);
                 if (symlink.equals("")) {
                     appletInfo += "\n" + activity.getString(R.string.notsymlinked);
                 } else {

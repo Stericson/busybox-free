@@ -23,7 +23,7 @@ public class InitialChecksTask {
         if(!arch.equals(Constants.ARM) && !arch.equals(Constants.X86))
         {
             result.setSuccess(false);
-            result.setError(context.getString(R.string.device_unsupported));
+            result.setError(context.getString(R.string.device_unsupported) + " " + arch);
             return result;
         }
 
