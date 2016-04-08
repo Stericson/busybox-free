@@ -70,7 +70,10 @@ public class ShellCommand extends Command {
         while (!isFinished()) {
             synchronized (this) {
                 try {
-                    this.wait();
+                    while(!this.isFinished())
+                    {
+                        this.wait(1000);
+                    }
                 } catch (Exception e) {}
             }
         }

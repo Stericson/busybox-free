@@ -97,7 +97,18 @@ public class PageAdapter extends PagerAdapter implements TitleProvider {
 
                 context.setFreeSpace((FontableTextView) view.findViewById(R.id.freespace));
 
-                context.getFreeSpace().setText(App.getInstance().getSpace() != -1 ? context.getString(R.string.amount) + " " + (context.getCustomPath().equals("") ? "/system" : context.getCustomPath()) + " " + App.getInstance().getSpace() + "mb" : "");
+                TextView freeSpace = context.getFreeSpace();
+                float freeSpaceValue = App.getInstance().getSpace();
+                boolean isCustomInstall = App.getInstance().isCustomInstallPath();
+                String installPath = App.getInstance().getInstallPath();
+                String message = "";
+
+                if(installPath.length() > 0)
+                {
+                    message = freeSpaceValue > 0 ? context.getString(R.string.amount) + " " + (isCustomInstall ? "/system" : installPath) + " " + freeSpaceValue + "mb" : context.getString(R.string.space_undetermined) + " " + installPath;
+                }
+
+                freeSpace.setText(message);
 
                 context.view2 = (TextView) view.findViewById(R.id.text);
             }

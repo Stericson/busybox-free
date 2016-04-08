@@ -52,7 +52,6 @@ public class PageChange implements OnPageChangeListener, JobCallback {
             PageAdapter.updateBusyboxInformation();
         } else if (id == FindFreeSpaceJob.FIND_FREE_SPACE_JOB) {
             context.updateList();
-//            context.getFreeSpace().setText(result.getSpace() != -1 ? context.getString(R.string.amount) + " " + (context.getCustomPath().equals("") ? "/system" : context.getCustomPath()) + " " + result.getSpace() + "mb" : "");
         }
     }
 

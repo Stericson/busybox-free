@@ -6,6 +6,7 @@ import com.stericson.RootTools.RootTools;
 
 import stericson.busybox.App;
 import stericson.busybox.R;
+import stericson.busybox.Support.Common;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.JobResult;
 
@@ -26,7 +27,7 @@ public class FindFreeSpaceTask {
             return result;
         }
 
-        App.getInstance().setSpace((float) (RootTools.getSpace(location) / 1000));
+        App.getInstance().setSpace((float) (Common.getSpace(location) / 1000));
 
         result.setSuccess(true);
         return result;

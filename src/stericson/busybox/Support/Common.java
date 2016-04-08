@@ -1,6 +1,8 @@
 package stericson.busybox.Support;
 
 import android.content.Context;
+import android.os.Debug;
+import android.util.Log;
 
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Command;
@@ -26,9 +28,11 @@ import stericson.busybox.interfaces.CommandCallback;
 public class Common {
 
     static final int BB_VERSION = 65463;
+    static final int SPACE = 9384;
 
     static ShellCommand command;
     static List<String> paths = new ArrayList<String>();
+    static List<String> freeSpaceResults = new ArrayList<String>();
 
     public static void cleanExtractedBusybox()
     {
@@ -118,6 +122,32 @@ public class Common {
         return RootTools.exists(binaryLocation + "busybox");
     }
 
+    /**
+     * @return long Size, converted to kilobytes (from xxx or xxxm or xxxk etc.)
+     */
+    private static long getConvertedSpace(String spaceStr) {
+        try {
+            double multiplier = 1.0;
+            char c;
+            StringBuffer sb = new StringBuffer();
+            for (int i = 0; i < spaceStr.length(); i++) {
+                c = spaceStr.charAt(i);
+                if (!Character.isDigit(c) && c != '.') {
+                    if (c == 'm' || c == 'M') {
+                        multiplier = 1024.0;
+                    } else if (c == 'g' || c == 'G') {
+                        multiplier = 1024.0 * 1024.0;
+                    }
+                    break;
+                }
+                sb.append(spaceStr.charAt(i));
+            }
+            return (long) Math.ceil(Double.valueOf(sb.toString()) * multiplier);
+        } catch (Exception e) {
+            return -1;
+        }
+    }
+
     public static String getSingleBusyBoxPath() {
 
         try {
@@ -137,6 +167,51 @@ public class Common {
         } catch (Exception e) {
             return null;
         }
+    }
+
+    public static long getSpace(final String path) {
+        freeSpaceResults = new ArrayList<String>();
+        boolean found = false;
+        RootTools.log("Looking for Space");
+
+        try {
+            command = new ShellCommand(new CCB(), SPACE, "df " + path);
+            Shell.startRootShell().add(command);
+            command.pause();
+
+        } catch (Exception e) {
+            return 0;
+        }
+
+        if (freeSpaceResults != null) {
+            int columnIndex = 0;
+            int count = 0;
+
+            for (String line : freeSpaceResults ) {
+                count = 0;
+                String[] columns = line.split(" ");
+
+                for(String column : columns)
+                {
+                    if(column.trim().length() > 0)
+                    {
+                        count++;
+
+                        if (found && columnIndex == count)
+                        {
+                            return getConvertedSpace(column);
+                        }
+                        else if (column.toLowerCase().equals("available") || column.toLowerCase().equals("free"))
+                        {
+                            found = true;
+                            columnIndex = count;
+                        }
+                    }
+                }
+            }
+        }
+
+        return -1;
     }
 
     public static String[] findBusyBoxLocations(boolean includeSymlinks, boolean single) {
@@ -190,6 +265,10 @@ public class Common {
             if (id == BB_VERSION) {
                 paths.add(line);
             }
+            else if (id == SPACE) {
+                freeSpaceResults.add(line);
+            }
+
         }
     }
 }

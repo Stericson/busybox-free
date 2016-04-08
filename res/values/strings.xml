@@ -103,6 +103,7 @@
     <string name="longPress">Long press an applet for more info on that applet.</string>
     <string name="removeApplet">Will remove Applet/Symlink</string>
     <string name="leaveApplet">Will leave Applet/Symlink</string>
+    <string name="space_undetermined">Free space unavailable for: </string>
 
     <!-- BEFORE UNINSTALL -->
     <string name="beforeUninstall">Before hitting the uninstall button please consider that many root applications and
@@ -155,14 +156,16 @@
     <string name="advanced">To access the advanced features of Smart Install, touch the arrow above.</string>
 
     <!-- welcome -->
-    <string name="welcome">Welcome to Busybox! \n\n Busybox now supports devices with Intel processors! \n\n
-        New feature to allow the installation of any version of
-        Busybox! (Pro Only) \n\n Faster loading times. \n\n Ability to automatically update busybox. (Pro Only) \n\n
-        Ability to install specific applets one by one and choosing how they are installed. (Pro Only) \n\n
+    <string name="welcome">Welcome to Busybox! \n\n
+        Upgrade to pro today and get the following features: \n\n
+        Installation of any version of Busybox! \n\n
+        Faster loading times. \n\n
+        Ability to automatically update busybox. \n\n
+        Ability to install specific applets one by one and choosing how they are installed. \n\n
         The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
-    <string name="welcome_sale">For a limited time only, Busybox Pro is on sale for $1.80 only instead of the regular $4.99 price! \n\n Thanks to everyone for being part of making this the most popular Busybox installer! \n\n The pro version of this application can be found here:
+    <string name="welcome_sale">Celebrating over 12 Million installs, Busybox Pro is on sale for $1.80 only instead of the regular $4.99 price! \n\n Thanks to everyone for being part of making this the most popular Busybox installer! \n\n The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
 
@@ -214,7 +217,8 @@
         installed and as a result installation will not occur for the safety of your device. Please close the application and
         reopen it in order to re-attempt installation. If the issue persists, please email me at StericDroid@gmail.com so I can assist you with fixing this issue.
     </string>
-
+    <string name="systemless_root_not_configured">Systemless root is not configured, please choose another install location.</string>
+    <string name="systemless_root_xbin_not_configured">/su/xbin does not exist, please choose another install location.</string>
 
     <!-- pro info -->
     <string name="autoupdate">The auto update feature automatically updates Busybox when a new version is available

@@ -1,7 +1,6 @@
 package stericson.busybox.Activity;
 
 import stericson.busybox.App;
-import stericson.busybox.Constants;
 import stericson.busybox.R;
 import stericson.busybox.adapter.PageAdapter;
 import stericson.busybox.interfaces.Choice;
@@ -49,7 +48,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
     //maintains current page position
     public int position;
 
-    private String custom = "";
     private TextView freespace;
     private ListView listView;
 
@@ -104,8 +102,8 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
             App.getInstance().setSmartInstall(false);
         }
 
-        if (App.getInstance().getPath() != null) {
-            new InstallJob(this, this, App.getInstance().getPath()).start();
+        if (App.getInstance().getInstallPath() != null) {
+            new InstallJob(this, this, App.getInstance().getInstallPath()).start();
         } else {
             initiatePopupWindow("An unexpected error has occured, please take a screenshot of the application and send it to me at StericDroid@gmail.com", false, this);
         }
@@ -195,7 +193,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
                     	this.initiatePopupWindow(getString(R.string.welcome), false, this);
                     }
 
-//                    this.initiatePopupWindow(getString(R.string.welcome), false, this);
 
                     install.setEnabled(true);
 
@@ -287,22 +284,10 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
     public void close(View v) {
         super.close(v);
-
-        if (!endApplication) {
-
-        }
-    }
-
-    public String getCustomPath() {
-        return this.custom;
     }
 
     public TextView getFreeSpace() {
         return this.freespace;
-    }
-
-    public void setCustomPath(String path) {
-        this.custom = path;
     }
 
     public void setFreeSpace(TextView space) {

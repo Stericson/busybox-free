@@ -2,6 +2,8 @@ package stericson.busybox.listeners;
 
 import stericson.busybox.App;
 import stericson.busybox.Activity.MainActivity;
+import stericson.busybox.Constants;
+import stericson.busybox.R;
 import stericson.busybox.interfaces.JobCallback;
 import stericson.busybox.jobs.FindFreeSpaceJob;
 import stericson.busybox.jobs.containers.JobResult;
@@ -24,8 +26,36 @@ public class Location implements OnItemSelectedListener, JobCallback {
     }
 
     public void onItemSelected(final AdapterView<?> arg0, View arg1,
-                               int arg2, long arg3) {
-        if (arg2 == 2) {
+                               int position, long arg3) {
+
+        int selection = 0;
+
+        // /su/xbin and /su/bin
+        if((position == 2 || position == 3) && !App.getInstance().isSystemlessRoot())
+        {
+            App.getInstance().setCustomInstallPath(false);
+            Toast.makeText(activity, activity.getString(R.string.systemless_root_not_configured), Toast.LENGTH_LONG).show();
+            arg0.setSelection(selection);
+            App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
+            App.getInstance().setPathPosition(selection);
+        }
+        else if(position == 2 && !RootTools.exists(Constants.locations[2], true))
+        {
+            App.getInstance().setCustomInstallPath(false);
+            Toast.makeText(activity, activity.getString(R.string.systemless_root_xbin_not_configured), Toast.LENGTH_LONG).show();
+
+            if(App.getInstance().isSystemlessRoot())
+            {
+                // /su/bin
+                selection = 3;
+            }
+
+            arg0.setSelection(selection);
+            App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
+            App.getInstance().setPathPosition(selection);
+        }
+        //position 4 is custom
+        else if (position == 4) {
             final EditText input = new EditText(activity);
             new AlertDialog.Builder(activity)
                     .setTitle("Custom Path")
@@ -33,36 +63,40 @@ public class Location implements OnItemSelectedListener, JobCallback {
                     .setView(input)
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int whichButton) {
-                            if (RootTools.exists(input.getText().toString())) {
-                                activity.setCustomPath(input.getText().toString());
-                                Toast.makeText(activity, "Custom install path set to " + activity.getCustomPath(), Toast.LENGTH_LONG).show();
+                            if (RootTools.exists(input.getText().toString(), true)) {
+                                App.getInstance().setCustomInstallPath(true);
+                                App.getInstance().setInstallPath(input.getText().toString());
+                                Toast.makeText(activity, "Custom install path set to " + App.getInstance().getInstallPath(), Toast.LENGTH_LONG).show();
                             } else {
+                                App.getInstance().setCustomInstallPath(false);
                                 Toast.makeText(activity, "That path does not exist or is not valid!", Toast.LENGTH_LONG).show();
                                 arg0.setSelection(0);
-                                App.getInstance().setPath(arg0.getSelectedItem().toString());
+                                App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
                                 App.getInstance().setPathPosition(0);
-                                activity.setCustomPath("");
                             }
 
-                            new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).start();
+                            new FindFreeSpaceJob(activity, Location.this, App.getInstance().isCustomInstallPath() ? "/system" : App.getInstance().getInstallPath()).start();
 
                         }
-                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                public void onClick(DialogInterface dialog, int whichButton) {
+                    }).setNegativeButton("Cancel", new DialogInterface.OnClickListener()
+            {
+                public void onClick(DialogInterface dialog, int whichButton)
+                {
                     arg0.setSelection(0);
-                    App.getInstance().setPath(arg0.getSelectedItem().toString());
+                    App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
                     App.getInstance().setPathPosition(0);
-                    activity.setCustomPath("");
 
-                    new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).start();
+                    new FindFreeSpaceJob(activity, Location.this, App.getInstance().isCustomInstallPath() ? "/system" : App.getInstance().getInstallPath()).start();
 
                 }
             }).show();
-        } else {
-            activity.setCustomPath("");
-            App.getInstance().setPathPosition(0);
-            App.getInstance().setPath(arg0.getSelectedItem().toString());
-            new FindFreeSpaceJob(activity, Location.this, activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()).start();
+        }
+        else {
+            App.getInstance().setCustomInstallPath(false);
+            App.getInstance().setPathPosition(position);
+            App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
+
+            new FindFreeSpaceJob(activity, Location.this, App.getInstance().getInstallPath()).start();
         }
     }
 

@@ -138,7 +138,7 @@ public class TuneAdapter extends BaseAdapter {
                 info_holder.path.setOnItemSelectedListener(new Location(activity));
                 info_holder.path.setSelection(App.getInstance().getPathPosition());
 
-                info_holder.freeSpace.setText(App.getInstance().getSpace() != -1 ? activity.getString(R.string.amount) + " " + (activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()) + " " + App.getInstance().getSpace() + "mb" : "");
+                this.setFreeSpace(info_holder);
 
                 info_holder.container.setVisibility(View.GONE);
 
@@ -206,7 +206,7 @@ public class TuneAdapter extends BaseAdapter {
         if (position == 0) {
             info_holder.foundAt.setText(App.getInstance().getFound());
 
-            info_holder.freeSpace.setText(App.getInstance().getSpace() != -1 ? activity.getString(R.string.amount) + " " + (activity.getCustomPath().equals("") ? "/system" : activity.getCustomPath()) + " " + App.getInstance().getSpace() + "mb" : "");
+            this.setFreeSpace(info_holder);
 
             info_holder.foundAt.setText(App.getInstance().getFound());
 
@@ -341,6 +341,22 @@ public class TuneAdapter extends BaseAdapter {
             return 0;
         else
             return 1;
+    }
+
+    public void setFreeSpace(InformationHolder info_holder)
+    {
+        TextView freeSpace = info_holder.freeSpace;
+        float freeSpaceValue = App.getInstance().getSpace();
+        boolean isCustomInstall = App.getInstance().isCustomInstallPath();
+        String installPath = App.getInstance().getInstallPath();
+        String message = "";
+
+        if(installPath.length() > 0)
+        {
+            message = freeSpaceValue > 0 ? activity.getString(R.string.amount) + " " + (isCustomInstall ? "/system" : installPath) + " " + freeSpaceValue + "mb" : activity.getString(R.string.space_undetermined) + " " + installPath;
+        }
+
+        freeSpace.setText(message);
     }
 
     public void update() {

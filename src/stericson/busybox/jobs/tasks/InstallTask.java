@@ -86,6 +86,7 @@ public class InstallTask extends BaseTask
         RootTools.remount("/", "rw");
         RootTools.remount("/system", "rw");
 
+        /*
         try
         {
             if (!RootTools.fixUtils(new String[]{"ls", "rm", "ln", "dd", "chmod", "mount"}))
@@ -101,6 +102,7 @@ public class InstallTask extends BaseTask
             result.setSuccess(false);
             return result;
         }
+        */
 
         if (!silent)
         {
@@ -334,16 +336,17 @@ public class InstallTask extends BaseTask
             int i = 0;
             while (i < locations.length)
             {
-                if (!locations[i].equals(destination))
+                String location = locations[i];
+
+                if (!location.equals(destination))
                 {
                     //Removing old copies
-                    RootTools.remount(locations[i], "rw");
+                    RootTools.remount(location, "rw");
 
                     try
                     {
                         command = new ShellCommand(this, 0,
-                                destination + "busybox rm " + locations[i] + "busybox",
-                                destination + "busybox ln -s " + destination + "busybox " + locations[i]);
+                                destination + "busybox rm " + location + "busybox");
                         Shell.startRootShell().add(command);
                         command.pause();
                     }
@@ -352,16 +355,20 @@ public class InstallTask extends BaseTask
                         e.printStackTrace();
                     }
 
-                    if (RootTools.exists(locations[i] + "busybox"))
+                    if (RootTools.exists(location + "busybox"))
                     {
-                        RootTools.log("BusyBox Installer", "The file was not removed: " + locations[i] + "busybox");
+                        RootTools.log("BusyBox Installer", "The file was not removed: " + location + "busybox");
                     }
                     else
                     {
-                        RootTools.log("BusyBox Installer", "The file was successfully removed: " + locations[i] + "busybox");
+                        RootTools.log("BusyBox Installer", "The file was successfully removed: " + location + "busybox");
                     }
 
-                    RootTools.remount(locations[i], "ro");
+                    //don't make /su ro
+                    if(!location.startsWith("/su"))
+                    {
+                        RootTools.remount(location, "ro");
+                    }
                 }
 
                 i++;

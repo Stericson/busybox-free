@@ -12,20 +12,27 @@ import android.view.View;
 
 public class App {
     private static App instance = null;
-    private List<Item> itemList;
-    private View popupView;
-    private boolean toggled = true;
-    private boolean smartInstall = false;
-    private boolean isInstalled = false;
-    private String path = "";
+
+    private String installPath = "";
     private String currentVersion = "";
     private String version = Constants.versions[0];
+    private String found = "";
+
+    private boolean smartInstall = false;
+    private boolean isInstalled = false;
+    private boolean toggled = true;
+    private boolean customInstallPath = false;
+    private boolean systemlessRoot = false;
+
     private int versionPosition = 0;
     private int pathPosition = 0;
-    private String found = "";
+
+    private float space = 0;
+
+    private List<Item> itemList;
+    private View popupView;
     private AppletAdapter appletadapter;
     private TuneAdapter tuneadapter;
-    private float space = 0;
 
     private App() {
     }
@@ -41,6 +48,7 @@ public class App {
     public static App getInstance() {
         if (instance == null)
             instance = new App();
+
         return instance;
     }
 
@@ -97,10 +105,6 @@ public class App {
         return versionPosition;
     }
 
-    public void setVersionPosition(int version_position) {
-        this.versionPosition = version_position;
-    }
-
     public int getPathPosition() {
         return pathPosition;
     }
@@ -117,12 +121,12 @@ public class App {
         this.currentVersion = currentVersion;
     }
 
-    public String getPath() {
-        return path;
+    public String getInstallPath() {
+        return installPath;
     }
 
-    public void setPath(String path) {
-        this.path = path;
+    public void setInstallPath(String installPath) {
+        this.installPath = installPath;
     }
 
     public String getVersion() {
@@ -176,6 +180,26 @@ public class App {
 
     public void setSpace(float space) {
         this.space = space;
+    }
+
+    public boolean isCustomInstallPath()
+    {
+        return customInstallPath;
+    }
+
+    public void setCustomInstallPath(boolean customInstallPath)
+    {
+        this.customInstallPath = customInstallPath;
+    }
+
+    public boolean isSystemlessRoot()
+    {
+        return systemlessRoot;
+    }
+
+    public void setSystemlessRoot(boolean systemlessRoot)
+    {
+        this.systemlessRoot = systemlessRoot;
     }
 }
 

@@ -3,31 +3,26 @@
   <component name="FacetManager">
     <facet type="android" name="Android">
       <configuration>
-        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../gen" />
-        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../gen" />
-        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../AndroidManifest.xml" />
-        <option name="RES_FOLDER_RELATIVE_PATH" value="/../res" />
-        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../assets" />
-        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../libs" />
-        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../proguard_logs" />
-        <proGuardCfgFiles>
-          <file>file:///Library/Java/JavaVirtualMachines/jdk1.8.0_25.jdk/Contents/Home/tools/proguard/proguard-android.txt</file>
-        </proGuardCfgFiles>
+        <option name="GEN_FOLDER_RELATIVE_PATH_APT" value="/../../busybox-free/gen" />
+        <option name="GEN_FOLDER_RELATIVE_PATH_AIDL" value="/../../busybox-free/gen" />
+        <option name="MANIFEST_FILE_RELATIVE_PATH" value="/../../busybox-free/AndroidManifest.xml" />
+        <option name="RES_FOLDER_RELATIVE_PATH" value="/../../busybox-free/res" />
+        <option name="ASSETS_FOLDER_RELATIVE_PATH" value="/../../busybox-free/assets" />
+        <option name="LIBS_FOLDER_RELATIVE_PATH" value="/../../busybox-free/libs" />
+        <option name="PROGUARD_LOGS_FOLDER_RELATIVE_PATH" value="/../../busybox-free/proguard_logs" />
       </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="false">
-    <output url="file://$MODULE_DIR$/out/production/busybox-free" />
-    <output-test url="file:///test/busybox-free" />
-    <exclude-output />
+    <output url="file://$MODULE_DIR$/out" />
+    <output-test url="file://$MODULE_DIR$/out" />
     <content url="file://$MODULE_DIR$">
       <sourceFolder url="file://$MODULE_DIR$/gen" isTestSource="false" generated="true" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
     </content>
     <orderEntry type="jdk" jdkName="Android API 21 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="view_pager_JW" />
     <orderEntry type="library" name="RootTools" level="project" />
+    <orderEntry type="module" module-name="view_pager_JW" />
   </component>
 </module>
-
