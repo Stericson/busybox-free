@@ -1,7 +1,12 @@
 package stericson.busybox;
 
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Constants {
+
+    public static final String key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAk78EBO78KPQkOCo2SCPqImOv6ViRmY7Vy/" + getMiddle() + getEnd();
 
     public static final String  ARM = "arm",
                                 X86 = "x86",
@@ -13,7 +18,16 @@ public class Constants {
             NEW = 2,
             BOTH = 3;
 
-    public static int updateType = UPDATE;
+    public static final int UNINSTALL = 0,
+            INSTALL = 1,
+            CHOOSE = 3,
+            CUSTOM_VERSION = 4,
+            NORMAL_INSTALL = 5,
+            UNINSTALL_CHOICE = 6,
+            HANDLESBIN = 8,
+            REINSTALL_SBIN = 9;
+
+    public static int updateType = NEW;
 
     public static final String  EXTRA_BUSYBOX_VERSION = "version",
                                 EXTRA_INSTALL_PATH = "path";
@@ -21,9 +35,9 @@ public class Constants {
     public static String storageLocation = "/data/data/stericson.busybox/files/bb/";
     public static String preparedLocation = "/data/local/";
 
-    public static String[] versions = {"Busybox 1.24.1", "Custom Version"};
+    public static String[] versions = {"Busybox 1.30.1", "Custom Version"};
 
-    public static String[] locations = {"/system/xbin", "/system/bin", "/su/xbin", "/su/bin", "Custom Path"};
+    public static List<String> locations = new ArrayList<>();
 
     public static String[] appletsString = new String[]
             {
@@ -361,4 +375,11 @@ public class Constants {
                     "zci"
             };
 
+    private static String getMiddle() {
+        return "d5xOi1+B1mJEWtHreHxrDw9sdyVaxbd3X/PnFIUQzj2Qk159RMP7p2lIiJ1yYVyifOciVV1f4r2z7llCKMJYCVVe0k";
+    }
+
+    private static String getEnd() {
+        return "+9P5SVEWZWoV+5QqJqm06pZ12ChsMNUN+3JujIUtiCARVn4wBmCT+eXfHcxmhyVfnE4a+3FlLGYrnCKE2B6AhcHXJXfPaW3K4P6JMDbWGoxO6yM/qPHqsfbsZK45Ooaqs1To2Oe6b7SaaAxAXPGipTCzQ7x8BRnMLkTMoLVDN0ABVlCgYpcWB9HysPALIXstSUWeGnF4WptkAfc34sQZm42DsQIDAQAB";
+    }
 }

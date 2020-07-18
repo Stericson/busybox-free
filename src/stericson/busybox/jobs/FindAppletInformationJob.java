@@ -2,7 +2,7 @@ package stericson.busybox.jobs;
 
 import stericson.busybox.Constants;
 import stericson.busybox.R;
-import stericson.busybox.Activity.MainActivity;
+import stericson.busybox.activity.MainActivity;
 import stericson.busybox.interfaces.JobCallback;
 import stericson.busybox.jobs.containers.JobResult;
 import stericson.busybox.jobs.tasks.FindAppletInformationTask;

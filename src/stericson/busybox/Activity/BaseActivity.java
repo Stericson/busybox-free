@@ -1,4 +1,4 @@
-package stericson.busybox.Activity;
+package stericson.busybox.activity;
 
 import java.lang.reflect.Method;
 import java.util.HashSet;
@@ -6,7 +6,8 @@ import java.util.Random;
 import java.util.Set;
 
 import stericson.busybox.R;
-import stericson.busybox.Support.Common;
+import stericson.busybox.interfaces.PopupCallback;
+import stericson.busybox.support.Common;
 import stericson.busybox.interfaces.Choice;
 import stericson.busybox.jobs.AsyncJob;
 
@@ -17,6 +18,8 @@ import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.util.Linkify;
 import android.view.Gravity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -26,9 +29,12 @@ import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.stericson.RootShell.RootShell;
 import com.stericson.RootTools.RootTools;
 
 public class BaseActivity extends Activity {
+
+    //protected IabHelper mHelper;
 
     public PopupWindow pw;
     public boolean endApplication;
@@ -39,13 +45,28 @@ public class BaseActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        RootTools.debugMode = false;
+        RootTools.debugMode = true;
+        RootShell.debugMode = true;
         RootTools.default_Command_Timeout = 5000;
 
         try {
             tf = Typeface.createFromAsset(getAssets(), "fonts/DJGROSS.ttf");
         } catch (Exception e) {
         }
+
+//        mHelper = new IabHelper(this, Constants.key);
+//
+//        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
+//            public void onIabSetupFinished(IabResult result) {
+//                if (!result.isSuccess()) {
+//                    // Oh no, there was a problem.
+//                    RootTools.log("Problem setting up In-app Billing: " + result);
+//                } else {
+//                    RootTools.log("IAB is set up");
+//                }
+//                // Hooray, IAB is fully set up!
+//            }
+//        });
     }
 
     @Override
@@ -54,6 +75,15 @@ public class BaseActivity extends Activity {
         Common.cleanExtractedBusybox();
         AsyncJob.cancelAllJobs(this);
         super.onDestroy();
+
+//        try
+//        {
+//            if (mHelper != null)
+//            {
+//                mHelper.dispose();
+//            }
+//            mHelper = null;
+//        } catch (Exception e) {}
     }
 
     @Override
@@ -64,7 +94,12 @@ public class BaseActivity extends Activity {
     }
 
     public void initiatePopupWindow(String text, boolean endApplication,
-                                    Activity context) {
+            Activity context) {
+        initiatePopupWindow(text, endApplication, context, null, -1);
+    }
+
+    public void initiatePopupWindow(String text, boolean endApplication,
+                                    Activity context, final PopupCallback popupCallback, final int choice) {
 
         if (pw != null && pw.isShowing())
             pw.dismiss();
@@ -78,6 +113,18 @@ public class BaseActivity extends Activity {
             View layout = inflater.inflate(R.layout.popupwindow, null);
             pw = new PopupWindow(layout, LayoutParams.MATCH_PARENT,
                     LayoutParams.MATCH_PARENT);
+
+            if(null != popupCallback)
+            {
+                pw.setOnDismissListener(new PopupWindow.OnDismissListener()
+                {
+                    @Override
+                    public void onDismiss()
+                    {
+                        popupCallback.popupDismissed(choice);
+                    }
+                });
+            }
 
             context.findViewById(R.id.pop).post(new Runnable() {
                 public void run() {
@@ -94,18 +141,25 @@ public class BaseActivity extends Activity {
     }
 
     public void makeChoice(final Choice choice, final int id, int title, int content, int positive, int negative) {
-        new AlertDialog.Builder(this)
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this)
                 .setTitle(title)
                 .setMessage(content)
                 .setPositiveButton(positive, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int whichButton) {
                         choice.choiceMade(true, id);
                     }
-                }).setNegativeButton(negative, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int whichButton) {
-                choice.choiceMade(false, id);
-            }
-        }).show();
+                });
+
+        if(-1 != negative) {
+            builder.setNegativeButton(negative, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int whichButton) {
+                    choice.choiceMade(false, id);
+                }
+            });
+        }
+
+        builder.show();
     }
 
     public String[] configureSpinner() {

@@ -1,16 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="stericson.busybox"
-          android:versionName="40" android:versionCode="190">
+          android:versionName="63" android:versionCode="213">
 
-    <uses-sdk android:minSdkVersion="4" android:targetSdkVersion="23"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
-    <application android:icon="@drawable/icon" android:label="BusyBox Free" android:theme="@style/CustomButton">
+    <application android:icon="@drawable/icon" android:label="BusyBox Free"
+                 android:theme="@style/CustomButton">
 
         <activity android:configChanges="keyboard|keyboardHidden|orientation|screenLayout"
-                  android:name=".Activity.MainActivity"
-                  android:screenOrientation="portrait"
+                  android:name=".activity.MainActivity"
                   android:label="BusyBox Free">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>

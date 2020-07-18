@@ -1,7 +1,7 @@
 package stericson.busybox.interfaces;
 
 
-import stericson.busybox.Support.CommandResult;
+import stericson.busybox.support.CommandResult;
 
 public interface CommandCallback {
 

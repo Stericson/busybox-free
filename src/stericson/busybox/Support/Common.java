@@ -1,8 +1,6 @@
-package stericson.busybox.Support;
+package stericson.busybox.support;
 
 import android.content.Context;
-import android.os.Debug;
-import android.util.Log;
 
 import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Command;
@@ -226,16 +224,21 @@ public class Common {
 
         Set<String> tmpSet = new HashSet<String>();
 
+        List<String> searchPaths = new ArrayList<>(RootTools.getPath());
+        searchPaths.add("/sbin/supersu/xbin");
+        searchPaths.add("/sbin/supersu/bin");
+
         try {
-            for (String paths : RootTools.getPath()) {
+            for (String paths : searchPaths) {
                 if (RootTools.exists(paths + "/busybox")) {
                     String symlink = RootTools.getSymlink(paths + "/busybox");
 
                     if (includeSymlinks || symlink.equals("")) {
                         tmpSet.add(paths);
 
-                        if (single)
+                        if (single) {
                             break;
+                        }
                     }
                 }
             }

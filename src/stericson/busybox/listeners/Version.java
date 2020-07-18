@@ -2,7 +2,7 @@ package stericson.busybox.listeners;
 
 import stericson.busybox.App;
 import stericson.busybox.R;
-import stericson.busybox.Activity.MainActivity;
+import stericson.busybox.activity.MainActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemSelectedListener;

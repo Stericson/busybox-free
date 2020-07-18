@@ -1,10 +1,12 @@
-package stericson.busybox.Activity;
+package stericson.busybox.activity;
 
 import stericson.busybox.App;
+import stericson.busybox.Constants;
 import stericson.busybox.R;
 import stericson.busybox.adapter.PageAdapter;
 import stericson.busybox.interfaces.Choice;
 import stericson.busybox.interfaces.JobCallback;
+import stericson.busybox.interfaces.PopupCallback;
 import stericson.busybox.jobs.FindAppletInformationJob;
 import stericson.busybox.jobs.InitialChecksJob;
 import stericson.busybox.jobs.InstallJob;
@@ -23,16 +25,12 @@ import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.stericson.RootTools.RootTools;
 import com.viewpagerindicator.TitlePageIndicator;
 
 import java.util.Calendar;
 
-public class MainActivity extends BaseActivity implements JobCallback, Choice {
-
-    //Constants
-    private static final int UNINSTALL = 0;
-    private static final int INSTALL = 1;
+public class MainActivity extends BaseActivity implements JobCallback, Choice, PopupCallback
+{
 
     private TextView header;
     private ViewPager pager;
@@ -53,8 +51,8 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
 
         App.getInstance().setItemList(null);
@@ -103,21 +101,26 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
         }
 
         if (App.getInstance().getInstallPath() != null) {
-            new InstallJob(this, this, App.getInstance().getInstallPath()).start();
+            if (App.getInstance().getInstallPath().startsWith("/sbin"))
+            {
+                MainActivity.this.initiatePopupWindow(getString(R.string.reinstall_sbin), false, MainActivity.this, this, Constants.REINSTALL_SBIN);
+            } else {
+                new InstallJob(this, this, App.getInstance().getInstallPath()).start();
+            }
+
         } else {
             initiatePopupWindow("An unexpected error has occured, please take a screenshot of the application and send it to me at StericDroid@gmail.com", false, this);
         }
     }
 
     public void uninstall(View v) {
-        this.makeChoice(this, UNINSTALL, R.string.careful, R.string.beforeUninstall, R.string.uninstall, R.string.cancel);
+        this.makeChoice(this, Constants.UNINSTALL, R.string.careful, R.string.beforeUninstall, R.string.uninstall, R.string.cancel);
     }
 
     public void uninstallDone() {
         if (pager != null)
             pager.setCurrentItem(2);
 
-        RootTools.remount("/system", "ro");
         App.getInstance().setFound("Busybox is not installed.");
 
         if (!App.getInstance().isInstalled()) {
@@ -128,7 +131,6 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
     }
 
     public void installDone() {
-        String currentVersion = App.getInstance().getCurrentVersion();
 
         install.setEnabled(true);
 
@@ -137,24 +139,11 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
             pager.setCurrentItem(2);
         }
 
-        RootTools.remount("/system", "ro");
+        //boolean result = RootTools.checkUtil("busybox");
 
-        boolean result = RootTools.checkUtil("busybox");
-
-        if (result) {
+        if (App.getInstance().isInstalled()) {
+            initiatePopupWindow(this.getString(R.string.installedunique), false, this);
             uninstall.setEnabled(true);
-
-            String thisVersion = RootTools.getBusyBoxVersion();
-
-            if (thisVersion == null) {
-                thisVersion = "";
-            }
-
-            if (thisVersion.contains(App.getInstance().getVersion().toLowerCase().replace("busybox", "").trim())) {
-                initiatePopupWindow(this.getString(R.string.installedunique), false, this);
-            } else {
-                initiatePopupWindow(this.getString(R.string.installedsomethingelse), false, this);
-            }
         } else {
             initiatePopupWindow(this.getString(R.string.failed), true, this);
         }
@@ -162,12 +151,19 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
     @Override
     public void choiceMade(boolean choice, int id) {
-        if (id == UNINSTALL) {
+        if (id == Constants.UNINSTALL) {
             if (choice) {
                 uninstall.setEnabled(false);
 
                 new UninstallJob(this, this).start();
             }
+        }
+    }
+
+    @Override
+    public void popupDismissed(int id) {
+        if(id == Constants.REINSTALL_SBIN) {
+            new InstallJob(this, this, App.getInstance().getInstallPath()).start();
         }
     }
 
@@ -184,7 +180,7 @@ public class MainActivity extends BaseActivity implements JobCallback, Choice {
 
                     Calendar cal = Calendar.getInstance();
 
-                    boolean showPromo = true;
+                    boolean showPromo = false;
 //                    boolean showPromo = ((cal.get(Calendar.DAY_OF_MONTH) >= 9 && cal.get(Calendar.DAY_OF_MONTH) <= 17 && cal.get(Calendar.MONTH) == 9 && cal.get(Calendar.YEAR) == 2014));
 
                     if (showPromo) {

@@ -2,12 +2,15 @@ package stericson.busybox.jobs.tasks;
 
 import android.content.Context;
 
+import com.stericson.RootShell.RootShell;
 import com.stericson.RootShell.execution.Shell;
 import com.stericson.RootTools.RootTools;
+
+import java.util.ArrayList;
 import java.util.List;
 import stericson.busybox.App;
 import stericson.busybox.R;
-import stericson.busybox.Support.ShellCommand;
+import stericson.busybox.support.ShellCommand;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.JobResult;
 
@@ -17,6 +20,11 @@ public class UninstallTask extends BaseTask {
         Context context = j.getContext();
         JobResult result = new JobResult();
         result.setSuccess(true);
+
+        List<String> paths = new ArrayList<>(RootShell.getPath());
+        paths.add("/sbin/supersu/xbin");
+        paths.add("/sbin/supersu/bin");
+
 
         try
         {
@@ -47,32 +55,39 @@ public class UninstallTask extends BaseTask {
             return result;
         }
 
-        if (RootTools.remount("/system", "rw"))
+        //try to remount system as rw...
+        RootTools.remount("/system", "rw");
+
+        j.publishCurrentProgress("preparing system...");
+
+        try
         {
-            j.publishCurrentProgress("preparing system...");
+            j.publishCurrentProgress("Removing BusyBox!");
 
-            try
+            List<String> foundPaths = RootShell.findBinary("busybox", paths, false);
+
+            for (String binaryPath : foundPaths)
             {
-                j.publishCurrentProgress("Removing BusyBox!");
-
-                List<String> foundPaths = RootTools.findBinary("busybox");
-
-                for (String binaryPath : foundPaths)
-                {
-                    RootTools.remount(binaryPath, "rw");
-                    command = new ShellCommand(this, 0,
-                            "toolbox rm " + binaryPath + "/busybox",
-                            "rm " + binaryPath + "/busybox");
-                    Shell.startRootShell().add(command);
-                    command.pause();
-
-                    RootTools.remount(binaryPath, "ro");
+                if(!binaryPath.endsWith("/")) {
+                    binaryPath += "/";
                 }
-            }
-            catch (Exception e) {}
-        }
 
-        App.getInstance().setInstalled(RootTools.isBusyboxAvailable());
+                RootTools.remount(binaryPath, "rw");
+                command = new ShellCommand(this, 0,
+                        "toolbox rm " + binaryPath + "busybox",
+                        "toybox rm " + binaryPath + "busybox",
+                        "rm " + binaryPath + "busybox");
+                Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
+                command.pause();
+
+                RootTools.remount(binaryPath, "ro");
+            }
+        }
+        catch (Exception e) {}
+
+        RootTools.remount("/system", "ro");
+
+        App.getInstance().setInstalled(!RootShell.findBinary("busybox", paths, false).isEmpty());
 
         return result;
     }

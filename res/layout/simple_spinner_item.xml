@@ -19,7 +19,7 @@
 -->
 <stericson.busybox.custom.FontableTextView
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res/stericson.busybox"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@android:id/text1"
         style="?android:attr/spinnerItemStyle"
         android:singleLine="true"

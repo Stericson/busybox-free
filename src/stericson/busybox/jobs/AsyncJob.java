@@ -196,7 +196,7 @@ public abstract class AsyncJob extends AsyncTask<Void, Object, JobResult> {
         }
         else
         {
-            super.execute();
+            this.execute();
         }
     }
 }

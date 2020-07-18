@@ -1,6 +1,6 @@
 package stericson.busybox.listeners;
 
-import stericson.busybox.Activity.MainActivity;
+import stericson.busybox.activity.MainActivity;
 import stericson.busybox.App;
 import stericson.busybox.R;
 import stericson.busybox.adapter.PageAdapter;
@@ -45,8 +45,8 @@ public class PageChange implements OnPageChangeListener, JobCallback {
                 App.getInstance().setFound("Busybox is not installed.");
             }
 
-            context.updateList();
             PageAdapter.updateBusyboxInformation();
+            context.updateList();
         } else if (id == FindBBVersionJob.FIND_BB_VERSION_JOB) {
             new FindBBLocationsJob(context, this, true).start();
             PageAdapter.updateBusyboxInformation();

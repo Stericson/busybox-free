@@ -3,7 +3,7 @@ package stericson.busybox.adapter;
 import stericson.busybox.App;
 import stericson.busybox.Constants;
 import stericson.busybox.R;
-import stericson.busybox.Activity.MainActivity;
+import stericson.busybox.activity.MainActivity;
 import stericson.busybox.custom.FontableTextView;
 import stericson.busybox.jobs.containers.Item;
 import stericson.busybox.listeners.AppletLongClickListener;

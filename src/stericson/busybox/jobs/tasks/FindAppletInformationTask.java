@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import stericson.busybox.R;
-import stericson.busybox.Support.ShellCommand;
+import stericson.busybox.support.ShellCommand;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.Item;
 import stericson.busybox.jobs.containers.JobResult;
@@ -58,7 +58,7 @@ public class FindAppletInformationTask extends BaseTask {
     private void findApplet(String applet) {
         result = new ArrayList<String>();
 
-        List<String> foundPaths = RootTools.findBinary(applet);
+        List<String> foundPaths = RootTools.findBinary(applet, false);
 
         if (foundPaths.size() > 0) {
 

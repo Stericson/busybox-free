@@ -5,9 +5,9 @@ import java.util.List;
 
 import com.stericson.RootShell.execution.Shell;
 import stericson.busybox.R;
-import stericson.busybox.Activity.BaseActivity;
-import stericson.busybox.Support.CommandResult;
-import stericson.busybox.Support.ShellCommand;
+import stericson.busybox.activity.BaseActivity;
+import stericson.busybox.support.CommandResult;
+import stericson.busybox.support.ShellCommand;
 import stericson.busybox.interfaces.CommandCallback;
 
 import android.view.View;

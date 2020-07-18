@@ -1,7 +1,7 @@
 package stericson.busybox.listeners;
 
 import stericson.busybox.App;
-import stericson.busybox.Activity.MainActivity;
+import stericson.busybox.activity.MainActivity;
 import stericson.busybox.Constants;
 import stericson.busybox.R;
 import stericson.busybox.interfaces.JobCallback;
@@ -30,32 +30,17 @@ public class Location implements OnItemSelectedListener, JobCallback {
 
         int selection = 0;
 
-        // /su/xbin and /su/bin
-        if((position == 2 || position == 3) && !App.getInstance().isSystemlessRoot())
+        // /su/xbin, /su/bin, /sbin/supersu/xbin, /sbin/supersu/bin
+        if((position == 2) &&
+                !App.getInstance().isSystemlessRoot() &&
+                position != Constants.locations.size() - 1)
         {
-            App.getInstance().setCustomInstallPath(false);
             Toast.makeText(activity, activity.getString(R.string.systemless_root_not_configured), Toast.LENGTH_LONG).show();
             arg0.setSelection(selection);
             App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
-            App.getInstance().setPathPosition(selection);
+            App.getInstance().setPathPosition(2);
         }
-        else if(position == 2 && !RootTools.exists(Constants.locations[2], true))
-        {
-            App.getInstance().setCustomInstallPath(false);
-            Toast.makeText(activity, activity.getString(R.string.systemless_root_xbin_not_configured), Toast.LENGTH_LONG).show();
-
-            if(App.getInstance().isSystemlessRoot())
-            {
-                // /su/bin
-                selection = 3;
-            }
-
-            arg0.setSelection(selection);
-            App.getInstance().setInstallPath(arg0.getSelectedItem().toString());
-            App.getInstance().setPathPosition(selection);
-        }
-        //position 4 is custom
-        else if (position == 4) {
+        else if (position == Constants.locations.size() - 1) {
             final EditText input = new EditText(activity);
             new AlertDialog.Builder(activity)
                     .setTitle("Custom Path")

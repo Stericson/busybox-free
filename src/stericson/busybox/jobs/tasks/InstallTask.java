@@ -1,15 +1,18 @@
 package stericson.busybox.jobs.tasks;
 
+import com.stericson.RootShell.RootShell;
+import com.stericson.RootShell.execution.Shell;
+import com.stericson.RootTools.RootTools;
+
 import android.content.Context;
 
-import com.stericson.RootTools.RootTools;
-import com.stericson.RootShell.execution.Shell;
+import java.util.Collections;
 
+import stericson.busybox.R;
 import stericson.busybox.App;
 import stericson.busybox.Constants;
-import stericson.busybox.R;
-import stericson.busybox.Support.Common;
-import stericson.busybox.Support.ShellCommand;
+import stericson.busybox.support.Common;
+import stericson.busybox.support.ShellCommand;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.Item;
 import stericson.busybox.jobs.containers.JobResult;
@@ -119,7 +122,7 @@ public class InstallTask extends BaseTask
                         "echo \"nameserver 8.8.4.4\" >> /system/etc/resolv.conf",
                         "echo \"nameserver 8.8.8.8\" >> /system/etc/resolv.conf",
                         "chmod 0644 /system/etc/resolv.conf");
-                Shell.startRootShell().add(command);
+                Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
                 command.pause();
             }
 
@@ -174,7 +177,7 @@ public class InstallTask extends BaseTask
             e.printStackTrace();
         }
 
-        App.getInstance().setInstalled(RootTools.isBusyboxAvailable());
+        App.getInstance().setInstalled(!RootShell.findBinary("busybox", Collections.singletonList(destination), true).isEmpty());
 
         return result;
     }
@@ -186,7 +189,7 @@ public class InstallTask extends BaseTask
             try
             {
                 command = new ShellCommand(this, 0, destination + "busybox --install -s " + destination);
-                Shell.startRootShell().add(command);
+                Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
                 command.pause();
             }
             catch (Exception e)
@@ -221,7 +224,7 @@ public class InstallTask extends BaseTask
                 command = new ShellCommand(this, 0,
                         destination + "busybox rm " + destination + item.getApplet(),
                         destination + "busybox ln -s " + destination + "busybox " + destination + item.getApplet());
-                Shell.startRootShell().add(command);
+                Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
                 command.pause();
             }
             catch (Exception e)
@@ -243,7 +246,7 @@ public class InstallTask extends BaseTask
             {
                 command = new ShellCommand(this, 0,
                         destination + "busybox rm " + item.getAppletPath() + "/" + item.getApplet());
-                Shell.startRootShell().add(command);
+                Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
                 command.pause();
             }
             catch (Exception e)
@@ -263,7 +266,7 @@ public class InstallTask extends BaseTask
             command = new ShellCommand(this, 0,
                     "dd if=" + binaryLocation + " of=" + destination + "busybox",
                     "chmod 0755 " + destination + "busybox");
-            Shell.startRootShell().add(command);
+            Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
             command.pause();
         }
         catch (Exception e)
@@ -281,7 +284,25 @@ public class InstallTask extends BaseTask
             command = new ShellCommand(this, 0,
                     "toolbox dd if=" + binaryLocation + " of=" + destination + "busybox",
                     "toolbox chmod 0755 " + destination + "busybox");
-            Shell.startRootShell().add(command);
+            Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
+            command.pause();
+        }
+        catch (Exception e)
+        {
+            e.printStackTrace();
+        }
+
+        if(this.checkBusybox(destination))
+        {
+            return true;
+        }
+
+        try
+        {
+            command = new ShellCommand(this, 0,
+                    "toybox dd if=" + binaryLocation + " of=" + destination + "busybox",
+                    "toybox chmod 0755 " + destination + "busybox");
+            Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
             command.pause();
         }
         catch (Exception e)
@@ -299,7 +320,7 @@ public class InstallTask extends BaseTask
             command = new ShellCommand(this, 0,
                     "cat " + binaryLocation + " > " + destination + "busybox",
                     "chmod 0755 " + destination + "busybox");
-            Shell.startRootShell().add(command);
+            Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
             command.pause();
         }
         catch (Exception e)
@@ -317,7 +338,7 @@ public class InstallTask extends BaseTask
             command = new ShellCommand(this, 0,
                     "toolbox cat " + binaryLocation + " > " + destination + "busybox",
                     "toolbox chmod 0755 " + destination + "busybox");
-            Shell.startRootShell().add(command);
+            Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
             command.pause();
         }
         catch (Exception e)
@@ -347,7 +368,7 @@ public class InstallTask extends BaseTask
                     {
                         command = new ShellCommand(this, 0,
                                 destination + "busybox rm " + location + "busybox");
-                        Shell.startRootShell().add(command);
+                        Shell.startRootShell(0, Shell.ShellContext.SUPERSU, 3).add(command);
                         command.pause();
                     }
                     catch(Exception e)

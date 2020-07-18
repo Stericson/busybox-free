@@ -2,7 +2,7 @@ package stericson.busybox.adapter;
 
 import stericson.busybox.App;
 import stericson.busybox.R;
-import stericson.busybox.Activity.BaseActivity;
+import stericson.busybox.activity.BaseActivity;
 import stericson.busybox.jobs.containers.Item;
 
 import android.content.Context;

@@ -7,6 +7,7 @@ import stericson.busybox.adapter.AppletAdapter;
 import stericson.busybox.adapter.TuneAdapter;
 import stericson.busybox.jobs.containers.Item;
 
+import android.os.Build;
 import android.util.Log;
 import android.view.View;
 
@@ -54,10 +55,17 @@ public class App {
 
     public String getArch()
     {
-        String arch = System.getProperty("os.arch");
-        String arc = (arch.substring(0, 3)).toUpperCase();
+        String arch;
 
-        if (arc.equals("ARM") || arc.equals("AAR"))
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.LOLLIPOP) {
+            arch = Build.CPU_ABI;
+        } else {
+            arch = Build.SUPPORTED_ABIS[0];
+        }
+
+        String arc = arch.substring(0, 3).toUpperCase();
+
+        if (arc.equals("ARM"))
         {
             return Constants.ARM;
         }
@@ -65,7 +73,7 @@ public class App {
         {
             return Constants.MIPS;
         }
-        else if ((arc.equals("I68") || arc.contains("68")) || arc.equals("X86"))
+        else if (arc.equals("X86"))
         {
             return Constants.X86;
         }

@@ -159,13 +159,14 @@
     <string name="welcome">Welcome to Busybox! \n\n
         Upgrade to pro today and get the following features: \n\n
         Installation of any version of Busybox! \n\n
+        Additional support for Magisk and installing to sbin. \n\n
         Faster loading times. \n\n
         Ability to automatically update busybox. \n\n
         Ability to install specific applets one by one and choosing how they are installed. \n\n
         The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
-    <string name="welcome_sale">Celebrating over 12 Million installs, Busybox Pro is on sale for $1.80 only instead of the regular $4.99 price! \n\n Thanks to everyone for being part of making this the most popular Busybox installer! \n\n The pro version of this application can be found here:
+    <string name="welcome_sale">For a limited time, Busybox Pro is on sale for $1.99 only instead of the regular $4.99 price! \n\n The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
 
@@ -175,6 +176,7 @@
     <string name="install_type">Install Type</string>
     <string name="normal_install">Normal Install</string>
     <string name="smart_install">Smart Install</string>
+    <string name="proonly_title">Pro Feature</string>
     <string name="install_type_content">Would you like to use Smart Install, which provides a more thorough install with
         some small risks as it does replace applets or normal install which is much faster and a safer install.
     </string>
@@ -236,5 +238,16 @@
         feature. \n\n The pro version of this application can be found here:
         https://market.android.com/details?id=stericson.busybox.donate
     </string>
+    <string name="reinstall_sbin">Just a quick note before installation, it looks like you are installing Busybox to /sbin.
+        \n\n The original contents of /sbin are always restored upon boot and as a result busybox will be removed from /sbin upon next boot.
+        \n\n Busybox Pro has a feature that can re-install busybox to /sbin upon boot so you do not have to manually re-install Busybox upon each reboot of your device.
+        \n\n The pro version of this application can be found here:
+        https://market.android.com/details?id=stericson.busybox.donate
+        \n\n Close this dialog to continue with your installation!
+    </string>
+
+    <!-- notification channel -->
+    <string name="channel_name">Busybox</string>
+    <string name="channel_description">Busybox Notification Channel</string>
 
 </resources>

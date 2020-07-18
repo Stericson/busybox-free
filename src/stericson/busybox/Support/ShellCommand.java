@@ -1,4 +1,4 @@
-package stericson.busybox.Support;
+package stericson.busybox.support;
 
 import com.stericson.RootShell.execution.Command;
 

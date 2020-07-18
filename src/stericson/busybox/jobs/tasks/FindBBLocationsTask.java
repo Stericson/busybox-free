@@ -5,7 +5,7 @@ import android.content.Context;
 import com.stericson.RootTools.RootTools;
 
 import stericson.busybox.R;
-import stericson.busybox.Support.Common;
+import stericson.busybox.support.Common;
 import stericson.busybox.jobs.AsyncJob;
 import stericson.busybox.jobs.containers.JobResult;
 

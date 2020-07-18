@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
         xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res/stericson.busybox"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent"
         android:background="#AA000000"
@@ -26,6 +26,7 @@
                 android:layout_marginTop="5dp"
                 android:layout_alignParentRight="true"
                 android:clickable="true"
+                android:focusable="true"
                 android:onClick="close"
                 android:src="@drawable/close"
                 android:id="@+id/close"/>

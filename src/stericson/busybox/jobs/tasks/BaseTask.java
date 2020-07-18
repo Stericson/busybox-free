@@ -1,7 +1,7 @@
 package stericson.busybox.jobs.tasks;
 
-import stericson.busybox.Support.CommandResult;
-import stericson.busybox.Support.ShellCommand;
+import stericson.busybox.support.CommandResult;
+import stericson.busybox.support.ShellCommand;
 import stericson.busybox.interfaces.CommandCallback;
 
 public class BaseTask implements CommandCallback {

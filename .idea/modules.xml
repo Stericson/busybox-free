@@ -2,9 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/busybox-free.iml" filepath="$PROJECT_DIR$/.idea/busybox-free.iml" />
-      <module fileurl="file://$PROJECT_DIR$/view_pager_JW/view_pager_JW.iml" filepath="$PROJECT_DIR$/view_pager_JW/view_pager_JW.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RootShell/RootShell.iml" filepath="$PROJECT_DIR$/RootShell/RootShell.iml" />
+      <module fileurl="file://$PROJECT_DIR$/RootTools/RootTools.iml" filepath="$PROJECT_DIR$/RootTools/RootTools.iml" />
+      <module fileurl="file://$PROJECT_DIR$/busybox-free.iml" filepath="$PROJECT_DIR$/busybox-free.iml" />
+      <module fileurl="file://$PROJECT_DIR$/com_viewpagerindicator/com_viewpagerindicator.iml" filepath="$PROJECT_DIR$/com_viewpagerindicator/com_viewpagerindicator.iml" />
     </modules>
   </component>
 </project>
-

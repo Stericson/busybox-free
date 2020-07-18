@@ -1,4 +1,4 @@
-package stericson.busybox.Support;
+package stericson.busybox.support;
 
 /**
  * Created by Stephen Erickson on 7/9/13.
